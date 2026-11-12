@@ -1760,3 +1760,26 @@ textarea[aria-invalid="true"] {
     display: none;
   }
 }
+
+/* === Mobile-First iPhone & Touch Polish === */
+@media (max-width: 980px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  .dispatch-telemetry-bar {
+    display: none;
+  }
+  .mobile-action-bar {
+    padding-bottom: calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  }
+  .pax-step-btn,
+  .tier-match-pill,
+  .nav-toggle {
+    min-height: 42px;
+  }
+  .pax-step-btn {
+    min-width: 42px;
+  }
+}
