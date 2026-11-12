@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="JMH Travel Solutions Ltd fleet mark">
+  <rect x="2" y="2" width="68" height="68" rx="14" fill="#0D2036"/>
+  <rect x="6" y="6" width="60" height="60" rx="10" fill="none" stroke="#24476E" stroke-width="1.5"/>
+  <!-- Precision fleet highway lanes -->
+  <path d="M13 49 L28 19 H37.5 L22.5 49 Z" fill="#0A666E"/>
+  <path d="M27.5 49 L42.5 19 H51 L36 49 Z" fill="#F0B429"/>
+  <path d="M41 49 L50.5 30 H58.5 L49 49 Z" fill="#FFFFFF"/>
+  <!-- Subtle baseline rule -->
+  <rect x="13" y="53" width="45.5" height="2.5" rx="1.25" fill="#7BC9D0"/>
+</svg>
