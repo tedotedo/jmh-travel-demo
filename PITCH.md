@@ -25,7 +25,7 @@
 1. **Tap 1 — Instant Fleet Credibility (`index.html`):**
    Show how the "Coming Soon" screen and mobile cookie wall are replaced by a crisp midnight-navy executive hero (`7-Seater to 70-Seater · Standard & Executive`), a pinned `Call 01642 058430` bar, and the **Quick Capacity Selector**.
 2. **Tap 2 — 7–70 Seater Tiers + B2B PSV Division (`fleet-services.html`):**
-   Scroll through the 4 clear passenger tiers (7–8, 16, 24–35, 49–70 seaters) and show how **24/7 PSV Driver Hire** and **External Transport Manager Compliance** get dedicated high-trust commercial sections for fellow North East operators.
+   Scroll through the 4 clear passenger tiers (7–8, 16, 24–35, 49–70 seaters) and show how **specialist PSV Driver Hire** and **External Transport Manager Compliance** get dedicated high-trust commercial sections for fellow North East operators.
 3. **Tap 3 — Smart Structured Quote Form (`quote.html`):**
    Type `28` into Passengers (watch it automatically suggest `24–35 Seater Midi-Coach`), toggle `Return Journey` vs `One-Way`, and show how airport flight numbers, luggage, and return pickup times arrive cleanly structured in one email instead of half-finished text messages.
 
@@ -36,7 +36,7 @@
 * **"I started building the IONOS site myself — I just haven't had time to finish it."**
   * *"Completely understandable when you’re managing vehicles, drivers, and compliance. Right now, though, IONOS is showing 'Under construction' and `mail@example.com` to paying Corporate and Private Hire customers. Everything here is already written around your exact 7–70 seater fleet and PSV services — we just swap in your confirmed email and fleet photos and point your existing domain across."*
 * **"Most of our work comes from school contracts or trade PSV cover, not casual web browsers."**
-  * *"That’s why we built dedicated B2B sections for 24/7 PSV Driver Hire and External Transport Manager compliance. When a school bursar, corporate PA, or fellow operator checks your site before awarding a contract, seeing a sharp compliance-led site instead of 'Under construction' builds instant trust."*
+  * *"That’s why we built dedicated B2B sections for specialist PSV Driver Hire and External Transport Manager compliance. When a school bursar, corporate PA, or fellow operator checks your site before awarding a contract, seeing a sharp compliance-led site instead of 'Under construction' builds instant trust."*
 * **"Will switching break our existing domain?"**
   * *"Not at all — you keep `jmhtravelsolutions.co.uk`. We also add automatic redirects from `/contact/` and `/contact-us/` straight to the new quote page so the broken link on This Is Yarm starts working immediately."*
 

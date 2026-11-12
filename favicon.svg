@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JMH Travel Solutions Ltd emblem">
-  <rect width="64" height="64" rx="12" fill="#0D2036"/>
-  <rect x="4" y="4" width="56" height="56" rx="9" fill="none" stroke="#1E3B5C" stroke-width="1.5"/>
-  <!-- Dynamic dual highway chevron -->
-  <path d="M12 45 L26 17 H35 L21 45 Z" fill="#0A666E"/>
-  <path d="M25 45 L39 17 H47 L33 45 Z" fill="#F0B429"/>
-  <path d="M37 45 L46 27 H53 L44 45 Z" fill="#FFFFFF"/>
+  <rect width="64" height="64" rx="8" fill="#0E1A2B"/>
+  <rect x="4" y="4" width="56" height="56" rx="5" fill="none" stroke="#293E5C" stroke-width="1.5"/>
+  <path d="M11 46 L25 16 H34 L20 46 Z" fill="#0D7A5F"/>
+  <path d="M25 46 L39 16 H47.5 L33.5 46 Z" fill="#F0A818"/>
+  <path d="M38 46 L46.5 27.5 H54 L45.5 46 Z" fill="#FFFFFF"/>
+  <rect x="11" y="50" width="43" height="2.5" rx="1.25" fill="#F0A818"/>
 </svg>

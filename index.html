@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>JMH Travel Solutions Ltd | 7–70 Seater Minibus &amp; Coach Hire, Stockton-on-Tees &amp; North East</title>
-  <meta name="description" content="Concept website for JMH Travel Solutions Ltd — 7-seater to 70-seater Standard and Executive minibus &amp; coach hire, 24/7 PSV Driver Hire and External Transport Manager services across Eaglescliffe, Stockton-on-Tees &amp; the North East.">
+  <title>JMH Travel Solutions Ltd | 7–70 Seater Minibus &amp; Coach Charter, Stockton-on-Tees &amp; North East</title>
+  <meta name="description" content="Concept website for JMH Travel Solutions Ltd — 7-seater to 70-seater Standard and Executive minibus &amp; coach hire, specialist PSV Driver Hire and External Transport Manager services across Eaglescliffe, Stockton-on-Tees &amp; the North East.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -16,10 +16,57 @@
     <p>Concept design by Mark Aszkenasy – not the official website of JMH Travel Solutions Ltd.</p>
   </div>
 
+  <!-- Top Technical Dispatch Bar with Live Horizontal SVG Route Schematic -->
+  <div class="dispatch-telemetry-bar" role="region" aria-label="Operating corridor and dispatch desk">
+    <div class="container telemetry-inner">
+      <div class="route-schematic" aria-label="Operating route: Eaglescliffe, Stockton-on-Tees, Yarm, Teesside and UK Charter">
+        <span class="route-node">
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <circle cx="6" cy="6" r="5" fill="#0D7A5F" stroke="#FFFFFF" stroke-width="1.5"/>
+          </svg>
+          <span>Eaglescliffe</span>
+        </span>
+        <svg class="route-connector" viewBox="0 0 20 6" aria-hidden="true">
+          <line x1="0" y1="3" x2="20" y2="3" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="route-node">
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <circle cx="6" cy="6" r="4.5" fill="#F0A818"/>
+          </svg>
+          <span>Stockton-on-Tees</span>
+        </span>
+        <svg class="route-connector" viewBox="0 0 20 6" aria-hidden="true">
+          <line x1="0" y1="3" x2="20" y2="3" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="route-node">
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <circle cx="6" cy="6" r="4.5" fill="#F0A818"/>
+          </svg>
+          <span>Yarm</span>
+        </span>
+        <svg class="route-connector" viewBox="0 0 20 6" aria-hidden="true">
+          <line x1="0" y1="3" x2="20" y2="3" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2"/>
+        </svg>
+        <span class="route-node">
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <circle cx="6" cy="6" r="5" fill="#0D7A5F" stroke="#F0A818" stroke-width="1.5"/>
+          </svg>
+          <span>Teesside &amp; UK Charter</span>
+        </span>
+      </div>
+
+      <a class="dispatch-desk-pill" href="tel:01642058430">
+        <span class="live-emerald-dot" aria-hidden="true"></span>
+        <span>Dispatch Desk: 01642 058430</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Clean Architectural White Transit Console Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand-link" href="index.html">
-        <img class="brand-mark" src="images/logo-mark.svg" width="44" height="44" alt="JMH Travel Solutions Ltd transport emblem">
+        <img class="brand-mark" src="images/logo-mark.svg" width="40" height="40" alt="JMH Travel Solutions Ltd geometric road-stripe mark">
         <span class="brand-text">
           <span class="brand-name">JMH Travel Solutions Ltd</span>
           <span class="brand-sub">Eaglescliffe, Stockton-on-Tees &amp; North East</span>
@@ -30,17 +77,17 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
           <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
-        <span>Menu</span>
+        <span>Console</span>
       </button>
 
       <nav class="site-nav" id="primary-nav" aria-label="Primary navigation">
         <ul class="nav-list">
-          <li><a class="nav-link" href="index.html" aria-current="page">Home</a></li>
-          <li><a class="nav-link" href="fleet-services.html">Fleet &amp; Services</a></li>
+          <li><a class="nav-link" href="index.html" aria-current="page">Dispatch Overview</a></li>
+          <li><a class="nav-link" href="fleet-services.html">7–70 Seat Fleet &amp; PSV</a></li>
           <li><a class="nav-link" href="quote.html">Instant Quote</a></li>
         </ul>
         <div class="header-cta-group">
-          <a class="btn btn-outline-light btn-sm" href="tel:01642058430">01642 058430</a>
+          <a class="btn btn-outline-dark btn-sm" href="tel:01642058430">01642 058430</a>
           <a class="btn btn-amber btn-sm" href="quote.html">Request Quote</a>
         </div>
       </nav>
@@ -48,217 +95,391 @@
   </header>
 
   <main id="main-content">
-    <!-- High-Trust Executive Fleet Hero -->
-    <section class="hero-fleet" aria-labelledby="hero-heading">
-      <div class="container hero-grid">
-        <div>
-          <span class="signal-badge">7-Seater to 70-Seater · Standard &amp; Executive</span>
-          <h1 id="hero-heading">Dependable Minibus, Coach &amp; PSV Solutions Across the North East.</h1>
-          <p class="lead">
-            Operating from Eaglescliffe across Stockton-on-Tees and the wider North East, JMH Travel Solutions Ltd provides 7-seater to 70-seater Standard and Executive passenger transport alongside specialist PSV driver cover and External Transport Manager compliance.
-          </p>
-
-          <!-- Quick Capacity Selector Jumping Straight to Quote Form -->
-          <form class="capacity-widget" action="quote.html" method="get" aria-label="Quick fleet capacity selector">
-            <span class="capacity-widget-title">Quick Capacity &amp; Specification Selector</span>
-            <div class="capacity-form-grid">
-              <div class="capacity-field">
-                <label for="quick-pax">Passenger Group Size</label>
-                <select id="quick-pax" name="pax">
-                  <option value="8">1–8 Passengers (7–8 Seater)</option>
-                  <option value="16" selected>9–16 Passengers (16-Seater Minibus)</option>
-                  <option value="32">17–35 Passengers (Midi-Coach)</option>
-                  <option value="53">36–70 Passengers (Full-Size Coach)</option>
-                </select>
-              </div>
-              <div class="capacity-field">
-                <label for="quick-spec">Specification</label>
-                <select id="quick-spec" name="spec">
-                  <option value="Executive" selected>Executive</option>
-                  <option value="Standard">Standard</option>
-                </select>
-              </div>
-              <div>
-                <button type="submit" class="btn btn-amber" style="width: 100%; min-height: 44px;">
-                  Build Quote →
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <div class="trust-strip">
-            <span><i class="trust-dot" aria-hidden="true"></i>7 to 70 Passenger Seats</span>
-            <span><i class="trust-dot" aria-hidden="true"></i>DBS &amp; CPC PSV Drivers</span>
-            <span><i class="trust-dot" aria-hidden="true"></i>Call <a href="tel:01642058430" style="color: #FFFFFF;">01642 058430</a></span>
-          </div>
+    <!-- Panoramic Widescreen Stage + Docked Horizontal Charter Search Console -->
+    <section class="panoramic-transit-stage" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="credential-ribbon" aria-label="Operator credentials">
+          <span class="cred-chip emerald">7–70 Passenger Seats</span>
+          <span class="cred-chip amber">Standard &amp; Executive</span>
+          <span class="cred-chip">PSV Driver Hire</span>
+          <span class="cred-chip">External Transport Manager</span>
         </div>
 
-        <figure class="fleet-figure">
+        <div class="stage-masthead">
+          <h1 id="hero-heading">Precision 7–70 Seater Charter &amp; PSV Dispatch Across the North East.</h1>
+          <p class="lead">
+            Operating from Eaglescliffe across Stockton-on-Tees and the wider North East, JMH Travel Solutions Ltd delivers Standard and Executive minibus &amp; coach hire alongside specialist PSV driver cover and DVSA transport management.
+          </p>
+        </div>
+
+        <!-- Panoramic Widescreen Fleet Stage -->
+        <figure class="panoramic-frame">
           <img
             src="images/hero.jpg"
             width="1440"
             height="803"
-            alt="Spotless silver executive touring coach parked beside a dark metallic executive minibus on a cobbled courtyard at sunrise"
+            alt="Spotless silver executive touring coach parked beside a dark metallic executive minibus at sunrise"
           >
-          <figcaption>
-            <span>7-seater to 70-seater Standard &amp; Executive passenger fleet</span>
+          <figcaption class="panorama-caption-bar">
+            <span>7-seater to 70-seater Standard &amp; Executive passenger fleet · Eaglescliffe, Stockton-on-Tees &amp; North East</span>
             <span class="illustrative-tag">Illustrative image</span>
           </figcaption>
         </figure>
+
+        <!-- Docked Overlapping Horizontal Console: Instant Fleet & Journey Matcher -->
+        <div class="charter-console-dock" role="region" aria-label="Instant Fleet and Journey Matcher Console">
+          <form id="charter-matcher-console" action="quote.html" method="get">
+            <!-- 1. Service Mode Tabs -->
+            <div class="console-mode-bar">
+              <fieldset class="mode-tabs-fieldset">
+                <legend class="sr-only">Select dispatch service mode</legend>
+                <div class="mode-tabs-grid">
+                  <label class="mode-tab-label" for="mode-hire">
+                    <input type="radio" id="mode-hire" name="type" value="hire" checked>
+                    <span>Minibus / Coach Charter</span>
+                  </label>
+                  <label class="mode-tab-label" for="mode-driver">
+                    <input type="radio" id="mode-driver" name="type" value="driver">
+                    <span>PSV Driver Cover (B2B)</span>
+                  </label>
+                  <label class="mode-tab-label" for="mode-tm">
+                    <input type="radio" id="mode-tm" name="type" value="tm">
+                    <span>External Transport Manager</span>
+                  </label>
+                </div>
+              </fieldset>
+              <span class="console-status-tag" id="console-mode-status">● Live Vehicle Capacity Matcher</span>
+            </div>
+
+            <!-- 2-4. Horizontal Interactive Controls -->
+            <div class="console-body-grid">
+              <!-- Column 1: Interactive Passenger Count Slider (7 -> 70 seats) -->
+              <div class="console-col">
+                <div class="slider-top-row">
+                  <label class="console-field-label" for="pax-slider">Passenger Count (7–70)</label>
+                  <output id="pax-readout" class="pax-readout-badge" for="pax-slider">16 Seats</output>
+                </div>
+                <div class="slider-control-row">
+                  <button type="button" class="pax-step-btn" data-pax-step="-1" aria-label="Decrease passenger seats">−</button>
+                  <input
+                    type="range"
+                    id="pax-slider"
+                    class="pax-range-slider"
+                    name="pax"
+                    min="7"
+                    max="70"
+                    value="16"
+                  >
+                  <button type="button" class="pax-step-btn" data-pax-step="1" aria-label="Increase passenger seats">+</button>
+                </div>
+                <div class="slider-scale" aria-hidden="true">
+                  <span>7</span>
+                  <span>16</span>
+                  <span>35</span>
+                  <span>70</span>
+                </div>
+              </div>
+
+              <!-- Column 2: Live Auto-Matched Vehicle Class Indicator + 70-Seat Visual Grid -->
+              <div class="console-col">
+                <span class="console-field-label">Auto-Matched Fleet Class (Tap or Slide)</span>
+                <div class="tier-pills-grid" role="group" aria-label="Matched vehicle tiers">
+                  <button type="button" class="tier-match-pill" data-tier-key="mpv" data-tier-pax="8">
+                    7–8 MPV
+                  </button>
+                  <button type="button" class="tier-match-pill is-active" data-tier-key="minibus" data-tier-pax="16">
+                    9–16 Minibus
+                  </button>
+                  <button type="button" class="tier-match-pill" data-tier-key="midi" data-tier-pax="32">
+                    24–35 Midi-Coach
+                  </button>
+                  <button type="button" class="tier-match-pill" data-tier-key="coach" data-tier-pax="53">
+                    49–70 Exec Coach
+                  </button>
+                </div>
+
+                <div class="seat-schematic-wrap" aria-live="polite">
+                  <span class="seat-schematic-caption" id="matched-class-label">Matched: 16-Seater Minibus</span>
+                  <div id="console-seat-grid" class="seat-dots-matrix" aria-hidden="true"></div>
+                </div>
+              </div>
+
+              <!-- Column 3: Specification Toggle (Standard / Executive) + Continue CTA -->
+              <div class="console-col">
+                <fieldset style="border: 0; margin: 0; padding: 0; min-width: 0;">
+                  <legend class="console-field-label">Cabin Specification</legend>
+                  <div class="spec-segmented">
+                    <label class="spec-seg-label" for="dock-spec-std">
+                      <input type="radio" id="dock-spec-std" name="spec" value="Standard">
+                      <span>Standard</span>
+                    </label>
+                    <label class="spec-seg-label" for="dock-spec-exec">
+                      <input type="radio" id="dock-spec-exec" name="spec" value="Executive" checked>
+                      <span>Executive</span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <button type="submit" class="btn btn-amber" style="width: 100%;">
+                  Continue to Full Quote →
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
-    <!-- Core Passenger Transport Applications -->
-    <section class="section" aria-labelledby="passenger-hire-heading">
+    <!-- Below the Fold: 4-Column Technical Fleet Blueprint Matrix -->
+    <section class="section" id="fleet-blueprint" aria-labelledby="blueprint-heading">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">Passenger Group Transport</span>
-          <h2 id="passenger-hire-heading">Tailored 7–70 seater hire for every itinerary.</h2>
+          <span class="eyebrow">Technical Fleet Matrix · 7 to 70 Seats</span>
+          <h2 id="blueprint-heading">Four Vehicle Classes Under One Operator</h2>
           <p class="lead">
-            Right-sized vehicles matched to your group count, luggage capacity and schedule across Eaglescliffe, Stockton-on-Tees, Teesside and UK-wide destinations.
+            Right-sized Standard and Executive vehicles dispatched across Eaglescliffe, Stockton-on-Tees, Yarm, Teesside and UK-wide destinations.
           </p>
         </div>
 
-        <div class="cards-4">
-          <article class="fleet-card">
+        <div class="blueprint-matrix">
+          <!-- TIER 01 -->
+          <article class="blueprint-card emerald-rail">
             <div>
-              <span class="capacity-pill">Private Hire</span>
-              <h3>Private Groups &amp; Events</h3>
-              <p>Weddings, race days, coastal excursions, sporting fixtures and celebrations in Standard or Executive comfort.</p>
+              <div class="blueprint-head">
+                <span class="tier-code">Tier 01: 7–8 Seater</span>
+                <span class="pax-chip">1–8 PAX</span>
+              </div>
+              <div class="blueprint-svg-bay" aria-hidden="true">
+                <svg viewBox="0 0 180 52" fill="none">
+                  <path d="M24 36V23L42 14H126L148 25V36H24Z" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"/>
+                  <path d="M46 18H82V26H36L46 18ZM88 18H122L136 26H88V18Z" fill="#E5F5F0" stroke="#0D7A5F" stroke-width="1.4"/>
+                  <circle cx="48" cy="37" r="7" fill="#0E1A2B"/><circle cx="48" cy="37" r="3" fill="#F0A818"/>
+                  <circle cx="128" cy="37" r="7" fill="#0E1A2B"/><circle cx="128" cy="37" r="3" fill="#F0A818"/>
+                </svg>
+              </div>
             </div>
-            <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=16&amp;spec=Standard">Quote Private Hire</a>
+            <div class="blueprint-body">
+              <div>
+                <h3>7–8 Seater MPV / Minibus</h3>
+                <p>Door-to-terminal UK airport transfers, rail connections, executive hospitality and compact group travel.</p>
+                <ul class="spec-list">
+                  <li>Dedicated airport suitcase &amp; golf kit space</li>
+                  <li>Standard &amp; Executive cabin trim</li>
+                  <li><span class="ph">[Exact vehicle specs &amp; photos – owner to confirm]</span></li>
+                </ul>
+              </div>
+              <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=8&amp;spec=Executive&amp;type=hire">Quote Tier 01 →</a>
+            </div>
           </article>
 
-          <article class="fleet-card navy-top">
+          <!-- TIER 02 -->
+          <article class="blueprint-card">
             <div>
-              <span class="capacity-pill">Corporate</span>
-              <h3>Corporate &amp; Executive Travel</h3>
-              <p>Smart, punctual transport for conferences, site visits, client hospitality and inter-office team movement.</p>
+              <div class="blueprint-head">
+                <span class="tier-code">Tier 02: 16 Seater</span>
+                <span class="pax-chip">9–16 PAX</span>
+              </div>
+              <div class="blueprint-svg-bay" aria-hidden="true">
+                <svg viewBox="0 0 180 52" fill="none">
+                  <path d="M18 37V17C18 14.8 19.8 13 22 13H134L156 24V37H18Z" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"/>
+                  <rect x="25" y="17" width="26" height="10" rx="1" fill="#EBF0F5" stroke="#0E1A2B" stroke-width="1.3"/>
+                  <rect x="55" y="17" width="26" height="10" rx="1" fill="#EBF0F5" stroke="#0E1A2B" stroke-width="1.3"/>
+                  <rect x="85" y="17" width="26" height="10" rx="1" fill="#EBF0F5" stroke="#0E1A2B" stroke-width="1.3"/>
+                  <path d="M115 17H132L146 27H115V17Z" fill="#FEF6E2" stroke="#0E1A2B" stroke-width="1.3"/>
+                  <circle cx="44" cy="38" r="7" fill="#0E1A2B"/><circle cx="44" cy="38" r="3" fill="#F0A818"/>
+                  <circle cx="134" cy="38" r="7" fill="#0E1A2B"/><circle cx="134" cy="38" r="3" fill="#F0A818"/>
+                </svg>
+              </div>
             </div>
-            <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=16&amp;spec=Executive">Quote Executive Travel</a>
+            <div class="blueprint-body">
+              <div>
+                <h3>16-Seater Minibus</h3>
+                <p>Versatile mid-group charter for corporate site visits, race days, weddings, coastal trips and school fixtures.</p>
+                <ul class="spec-list">
+                  <li>Nimble access for rural &amp; town venues</li>
+                  <li>Standard shuttle or Executive interior</li>
+                  <li><span class="ph">[Exact vehicle specs &amp; photos – owner to confirm]</span></li>
+                </ul>
+              </div>
+              <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=16&amp;spec=Executive&amp;type=hire">Quote Tier 02 →</a>
+            </div>
           </article>
 
-          <article class="fleet-card">
+          <!-- TIER 03 -->
+          <article class="blueprint-card emerald-rail">
             <div>
-              <span class="capacity-pill">Transfers</span>
-              <h3>UK Airport &amp; Rail Transfers</h3>
-              <p>Door-to-terminal group transfers with dedicated luggage allowance and flight reference coordination.</p>
+              <div class="blueprint-head">
+                <span class="tier-code">Tier 03: 24–35 Midi</span>
+                <span class="pax-chip">17–35 PAX</span>
+              </div>
+              <div class="blueprint-svg-bay" aria-hidden="true">
+                <svg viewBox="0 0 180 52" fill="none">
+                  <path d="M14 38V14C14 12.3 15.3 11 17 11H150L164 23V38H14Z" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"/>
+                  <rect x="20" y="15" width="118" height="11" rx="1" fill="#E5F5F0" stroke="#0D7A5F" stroke-width="1.3"/>
+                  <line x1="49" y1="15" x2="49" y2="26" stroke="#0D7A5F" stroke-width="1.3"/>
+                  <line x1="79" y1="15" x2="79" y2="26" stroke="#0D7A5F" stroke-width="1.3"/>
+                  <line x1="109" y1="15" x2="109" y2="26" stroke="#0D7A5F" stroke-width="1.3"/>
+                  <line x1="20" y1="32" x2="132" y2="32" stroke="#F0A818" stroke-width="2"/>
+                  <circle cx="42" cy="39" r="7" fill="#0E1A2B"/><circle cx="42" cy="39" r="3" fill="#F0A818"/>
+                  <circle cx="138" cy="39" r="7" fill="#0E1A2B"/><circle cx="138" cy="39" r="3" fill="#F0A818"/>
+                </svg>
+              </div>
             </div>
-            <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=8&amp;spec=Executive">Quote Airport Run</a>
+            <div class="blueprint-body">
+              <div>
+                <h3>24–35 Seater Midi-Coach</h3>
+                <p>Balanced touring capacity and underfloor luggage storage for sports clubs, conferences and regional day hires.</p>
+                <ul class="spec-list">
+                  <li>Underfloor luggage bays for touring kit</li>
+                  <li>Available in Standard &amp; Executive spec</li>
+                  <li><span class="ph">[Exact vehicle specs &amp; photos – owner to confirm]</span></li>
+                </ul>
+              </div>
+              <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=32&amp;spec=Executive&amp;type=hire">Quote Tier 03 →</a>
+            </div>
           </article>
 
-          <article class="fleet-card amber-top">
+          <!-- TIER 04 -->
+          <article class="blueprint-card amber-rail">
             <div>
-              <span class="capacity-pill">Contracted</span>
-              <h3>Schools &amp; Regular Contracts</h3>
-              <p>DBS-screened, CPC-qualified drivers supporting school runs, college fixtures and recurring contracted routes.</p>
+              <div class="blueprint-head">
+                <span class="tier-code">Tier 04: 49–70 Full Coach</span>
+                <span class="pax-chip">36–70 PAX</span>
+              </div>
+              <div class="blueprint-svg-bay" aria-hidden="true">
+                <svg viewBox="0 0 180 52" fill="none">
+                  <path d="M8 38V12C8 10.3 9.3 9 11 9H160L172 22V38H8Z" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"/>
+                  <rect x="14" y="13" width="140" height="12" rx="1" fill="#FEF6E2" stroke="#0E1A2B" stroke-width="1.3"/>
+                  <line x1="42" y1="13" x2="42" y2="25" stroke="#0E1A2B" stroke-width="1.2"/>
+                  <line x1="70" y1="13" x2="70" y2="25" stroke="#0E1A2B" stroke-width="1.2"/>
+                  <line x1="98" y1="13" x2="98" y2="25" stroke="#0E1A2B" stroke-width="1.2"/>
+                  <line x1="126" y1="13" x2="126" y2="25" stroke="#0E1A2B" stroke-width="1.2"/>
+                  <line x1="14" y1="31" x2="156" y2="31" stroke="#0D7A5F" stroke-width="2"/>
+                  <circle cx="36" cy="39" r="7" fill="#0E1A2B"/><circle cx="36" cy="39" r="3" fill="#F0A818"/>
+                  <circle cx="128" cy="39" r="7" fill="#0E1A2B"/><circle cx="128" cy="39" r="3" fill="#F0A818"/>
+                  <circle cx="146" cy="39" r="7" fill="#0E1A2B"/><circle cx="146" cy="39" r="3" fill="#F0A818"/>
+                </svg>
+              </div>
             </div>
-            <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=53&amp;spec=Standard">Enquire Contract Hire</a>
+            <div class="blueprint-body">
+              <div>
+                <h3>49–70 Seater Full Coach</h3>
+                <p>High-capacity school contract movement up to 70 seats and long-distance UK Executive touring charters.</p>
+                <ul class="spec-list">
+                  <li>High-density school &amp; stadium capacity</li>
+                  <li>Long-distance UK motorway Executive option</li>
+                  <li><span class="ph">[Exact vehicle specs &amp; photos – owner to confirm]</span></li>
+                </ul>
+              </div>
+              <a class="btn btn-outline-dark btn-sm" href="quote.html?pax=53&amp;spec=Executive&amp;type=hire">Quote Tier 04 →</a>
+            </div>
           </article>
         </div>
-      </div>
-    </section>
 
-    <!-- Fleet Interior & Standard vs Executive Overview -->
-    <section class="section section-white" aria-labelledby="executive-cabin-heading">
-      <div class="container split-grid">
-        <figure class="fleet-figure">
-          <img
-            src="images/feature.jpg"
-            width="1200"
-            height="896"
-            alt="Executive coach interior featuring navy leather reclining seats, walnut armrests, overhead luggage lockers and panoramic windows"
-            loading="lazy"
-          >
-          <figcaption>
-            <span>Executive coach cabin comfort for regional &amp; long-distance journeys</span>
-            <span class="illustrative-tag">Illustrative image</span>
-          </figcaption>
-        </figure>
+        <!-- Integrated Executive Cabin Showcase Strip with images/feature.jpg -->
+        <div class="cabin-showcase-strip">
+          <figure class="fleet-figure">
+            <img
+              src="images/feature.jpg"
+              width="1200"
+              height="896"
+              alt="Executive coach interior featuring navy leather reclining seats, walnut armrests, overhead luggage lockers and panoramic windows"
+              loading="lazy"
+            >
+            <figcaption>
+              <span>Executive coach cabin comfort for regional &amp; UK-wide charter</span>
+              <span class="illustrative-tag">Illustrative image</span>
+            </figcaption>
+          </figure>
 
-        <div>
-          <span class="eyebrow">Standard &amp; Executive Tiers</span>
-          <h2 id="executive-cabin-heading">One operator from a 7-seater MPV right up to a 70-seater coach.</h2>
-          <p>
-            Instead of splitting bookings across multiple companies, JMH Travel Solutions Ltd covers the complete passenger spectrum — whether you need a nimble 7-seater for an early airport departure or a full-size 70-seater coach for school or event movement.
-          </p>
-          <ul class="spec-list">
-            <li><strong>7–8 Seater &amp; 16-Seater Minibuses:</strong> Ideal for airport transfers, executive shuttles and small groups</li>
-            <li><strong>24–35 Seater Midi-Coaches:</strong> Balanced capacity and access for mid-sized corporate and private groups</li>
-            <li><strong>49–70 Seater Full-Size Coaches:</strong> High-capacity school, tour and event movement</li>
-            <li><strong>Fleet Specifications:</strong> <span class="ph">[Exact vehicle specs &amp; photos – owner to confirm]</span></li>
-          </ul>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.65rem;">
-            <a class="btn btn-teal" href="fleet-services.html">View 7–70 Seater Fleet Guide</a>
-            <a class="btn btn-outline-dark" href="tel:01642058430">Call 01642 058430</a>
+          <div>
+            <span class="eyebrow">Standard vs Executive Specification</span>
+            <h3>Matched to Route Distance, Budget &amp; Occasion</h3>
+            <p>
+              Whether scheduling a cost-effective local school shuttle or moving corporate delegates across the UK, every tier from 7 to 70 seats is available in Standard or Executive trim.
+            </p>
+            <ul class="spec-list">
+              <li><strong>Standard Fleet:</strong> Clean, dependable seating for schools, recurring contracts &amp; local shuttles</li>
+              <li><strong>Executive Fleet:</strong> Enhanced cabin comfort for corporate hospitality, weddings &amp; airport transfers</li>
+            </ul>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.35rem;">
+              <a class="btn btn-emerald btn-sm" href="fleet-services.html">Full 7–70 Seat Fleet Guide</a>
+              <a class="btn btn-outline-dark btn-sm" href="tel:01642058430">Call 01642 058430</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Specialist B2B Trade PSV Services -->
-    <section class="section section-navy" aria-labelledby="psv-trade-heading">
+    <!-- B2B Operator Compliance Split Panel -->
+    <section class="section section-surface" id="operator-compliance" aria-labelledby="b2b-heading">
       <div class="container">
         <div class="section-header">
-          <span class="signal-badge">Trade &amp; Operator Support Division</span>
-          <h2 id="psv-trade-heading">Specialist PSV Driver Hire &amp; External Transport Manager Services</h2>
+          <span class="eyebrow">Commercial Operator &amp; Trade Support Division</span>
+          <h2 id="b2b-heading">CPC / DBS PSV Driver Cover &amp; DVSA External Transport Manager Services</h2>
           <p class="lead">
-            Alongside passenger charter, JMH Travel Solutions Ltd supports fellow bus, coach and minibus operators across Stockton-on-Tees and the North East with qualified PSV drivers and statutory compliance management.
+            Supporting fellow bus, coach and minibus O-licence operators across Eaglescliffe, Stockton-on-Tees and the North East with vetted PSV drivers and statutory compliance governance.
           </p>
         </div>
 
-        <div class="cards-2">
-          <article class="b2b-card">
+        <div class="compliance-split">
+          <!-- Panel 1: CPC / DBS PSV Driver Cover -->
+          <article class="compliance-panel">
             <div>
-              <h3>PSV Driver Hire (Including 24/7 Emergency Cover)</h3>
-              <p>Keep your routes moving during sickness, holiday peaks or short-notice private hires with vetted professional drivers.</p>
+              <span class="compliance-kicker">Short-Notice &amp; Planned Relief</span>
+              <h3>CPC / DBS PSV Driver Cover</h3>
+              <p>
+                Keep contracted school routes, private charters and touring schedules moving during unplanned sickness, holiday peaks or short-notice demand.
+              </p>
               <ul class="spec-list">
-                <li>DBS-screened &amp; Driver CPC-compliant PSV licence holders</li>
-                <li>Available for school runs, contracted routes &amp; private hires</li>
-                <li>24/7 emergency PSV driver cover across the North East</li>
+                <li>DBS-screened &amp; Driver CPC-qualified PSV licence holders</li>
+                <li>Experienced on minibuses, midi-coaches &amp; full-size PSVs</li>
+                <li>short-notice &amp; planned PSV driver dispatch across the North East</li>
               </ul>
             </div>
-            <div>
-              <a class="btn btn-amber btn-sm" href="quote.html?type=driver">Enquire PSV Driver Cover</a>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+              <a class="btn btn-amber btn-sm" href="quote.html?type=driver">Book PSV Driver Cover →</a>
+              <a class="btn btn-outline-light btn-sm" href="tel:01642058430">Dispatch Line: 01642 058430</a>
             </div>
           </article>
 
-          <article class="b2b-card">
+          <!-- Panel 2: DVSA External Transport Manager Services -->
+          <article class="compliance-panel amber-top">
             <div>
-              <h3>PSV External Transport Manager Services</h3>
-              <p>Structured, dependable compliance oversight for North East bus, coach and minibus O-licence holders.</p>
+              <span class="compliance-kicker">O-Licence &amp; DVSA Governance</span>
+              <h3>DVSA External Transport Manager Services</h3>
+              <p>
+                Continuous and effective compliance management for North East bus, coach and minibus Operator Licence holders.
+              </p>
               <ul class="spec-list">
                 <li>Operator licence administration &amp; direct DVSA liaison</li>
-                <li>Preventative maintenance &amp; pre-MOT scheduling oversight</li>
+                <li>Preventative maintenance wallcharts, defect &amp; pre-MOT oversight</li>
                 <li>Tachograph analysis &amp; drivers’ hours compliance auditing</li>
               </ul>
             </div>
-            <div>
-              <a class="btn btn-amber btn-sm" href="quote.html?type=tm">Enquire Transport Manager Support</a>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+              <a class="btn btn-amber btn-sm" href="quote.html?type=tm">Enquire Transport Manager →</a>
+              <a class="btn btn-outline-light btn-sm" href="fleet-services.html#psv-services">Compliance Scope</a>
             </div>
           </article>
         </div>
-      </div>
-    </section>
 
-    <!-- Direct Dispatch & Area Coverage Strip -->
-    <section class="section" aria-labelledby="contact-strip-heading">
-      <div class="container">
-        <div class="fleet-card navy-top" style="padding: 2rem;">
-          <div class="split-grid">
+        <!-- Direct Dispatch & Operating Area Strip (Strict Privacy Rule: Area Only) -->
+        <div class="cabin-showcase-strip" style="margin-top: 2rem; grid-template-columns: 1fr;">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem;">
             <div>
-              <span class="eyebrow">Direct Bookings &amp; Dispatch</span>
-              <h2 id="contact-strip-heading" style="margin-bottom: 0.6rem;">Ready to price a journey or arrange PSV cover?</h2>
-              <p style="margin-bottom: 0.9rem;">
-                Based in <strong>Eaglescliffe, Stockton-on-Tees &amp; North East</strong>. Speak directly with the team on <a href="tel:01642058430"><strong>01642 058430</strong></a> or send your structured trip details online in under two minutes.
+              <span class="eyebrow">Direct Dispatch Desk</span>
+              <h3 style="margin-bottom: 0.35rem;">Eaglescliffe, Stockton-on-Tees &amp; North East</h3>
+              <p style="margin-bottom: 0.4rem;">
+                Call <a href="tel:01642058430"><strong>01642 058430</strong></a> for immediate charter pricing or PSV cover.
               </p>
               <p style="margin-bottom: 0;">
                 <strong>Booking Email:</strong> <span class="ph">[Confirmed booking email – owner to confirm]</span>
               </p>
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: flex-start;">
-              <a class="btn btn-teal" href="quote.html">Open Instant Quote Form</a>
-              <a class="btn btn-navy" href="tel:01642058430">Call 01642 058430</a>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+              <a class="btn btn-amber" href="quote.html">Open Instant Quote</a>
+              <a class="btn btn-slate" href="tel:01642058430">Call 01642 058430</a>
               <a
                 class="btn btn-outline-dark"
                 href="https://www.google.com/maps/search/?api=1&amp;query=Eaglescliffe+Stockton-on-Tees"
@@ -281,16 +502,16 @@
           <p><strong>Operating Area:</strong> Eaglescliffe, Stockton-on-Tees &amp; North East</p>
         </div>
         <div>
-          <h3>Navigation</h3>
+          <h3>Transit Console</h3>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="fleet-services.html">7–70 Seater Fleet &amp; PSV Services</a></li>
+            <li><a href="index.html">Dispatch Overview</a></li>
+            <li><a href="fleet-services.html">7–70 Seat Fleet &amp; PSV Services</a></li>
             <li><a href="quote.html">Instant Journey Quote</a></li>
             <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Eaglescliffe+Stockton-on-Tees" target="_blank" rel="noopener noreferrer">Eaglescliffe &amp; Stockton-on-Tees Area</a></li>
           </ul>
         </div>
         <div>
-          <h3>Direct Contact</h3>
+          <h3>Direct Dispatch</h3>
           <p>Telephone: <a href="tel:01642058430"><strong>01642 058430</strong></a></p>
           <p>Email:<br><span class="ph ph-dark">[Confirmed booking email – owner to confirm]</span></p>
         </div>

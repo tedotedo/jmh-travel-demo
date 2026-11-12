@@ -1,10 +1,12 @@
 /* ==========================================================================
-   JMH Travel Solutions Ltd — Client-Side Fleet & Quote Interactions
-   Mobile Navigation, Return Toggle, Dynamic Vehicle Tier & Accessible Validation
+   JMH Travel Solutions Ltd — Client-Side Dispatch Console & Quote Interactions
+   Mobile Nav, Live 7–70 Seat Visual Matcher & Accessible Quote Validation
    ========================================================================== */
 
 (function () {
   'use strict';
+
+  var CONSOLE_STORAGE_KEY = 'jmhCharterConsole';
 
   /* 1. Keyboard-Accessible Mobile Navigation */
   var navToggle = document.querySelector('.nav-toggle');
@@ -43,7 +45,152 @@
     });
   }
 
-  /* 2. Smart Instant Journey Quote Request Form (quote.html) */
+  function computeVehicleTier(pax) {
+    var n = parseInt(pax, 10);
+    if (isNaN(n) || n < 1) return 'Select 7–70 passengers';
+    if (n <= 8) return '7–8 Seater MPV / Minibus';
+    if (n <= 16) return '16-Seater Minibus';
+    if (n <= 35) return '24–35 Seater Midi-Coach';
+    if (n <= 70) return '49–70 Seater Executive Coach';
+    return 'Multi-Coach Fleet Charter (70+ pax)';
+  }
+
+  function computeTierKey(pax) {
+    var n = parseInt(pax, 10);
+    if (n <= 8) return 'mpv';
+    if (n <= 16) return 'minibus';
+    if (n <= 35) return 'midi';
+    return 'coach';
+  }
+
+  /* 2. Docked Horizontal Charter Search Console (index.html) */
+  var matcherConsole = document.getElementById('charter-matcher-console');
+  if (matcherConsole) {
+    var paxSlider = document.getElementById('pax-slider');
+    var paxReadout = document.getElementById('pax-readout');
+    var matchedLabel = document.getElementById('matched-class-label');
+    var modeStatus = document.getElementById('console-mode-status');
+    var seatGrid = document.getElementById('console-seat-grid');
+    var tierPills = matcherConsole.querySelectorAll('[data-tier-key]');
+    var stepBtns = matcherConsole.querySelectorAll('[data-pax-step]');
+    var seatDots = [];
+
+    if (seatGrid) {
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < 70; i++) {
+        var dot = document.createElement('span');
+        dot.className = 'seat-dot';
+        frag.appendChild(dot);
+        seatDots.push(dot);
+      }
+      seatGrid.appendChild(frag);
+    }
+
+    function syncConsoleUI() {
+      var paxVal = paxSlider ? parseInt(paxSlider.value, 10) : 16;
+      if (isNaN(paxVal) || paxVal < 7) paxVal = 7;
+      if (paxVal > 70) paxVal = 70;
+
+      var checkedMode = matcherConsole.querySelector('input[name="type"]:checked');
+      var modeVal = checkedMode ? checkedMode.value : 'hire';
+      var activeKey = computeTierKey(paxVal);
+      var tierLabel = computeVehicleTier(paxVal);
+
+      if (paxReadout) {
+        paxReadout.textContent = paxVal + ' Seats';
+      }
+
+      tierPills.forEach(function (pill) {
+        var isMatch = pill.getAttribute('data-tier-key') === activeKey;
+        pill.classList.toggle('is-active', isMatch);
+      });
+
+      seatDots.forEach(function (dotEl, idx) {
+        dotEl.classList.toggle('is-filled', idx < paxVal);
+      });
+
+      if (matchedLabel) {
+        if (modeVal === 'driver') {
+          matchedLabel.textContent = 'PSV Driver Cover · ' + tierLabel;
+        } else if (modeVal === 'tm') {
+          matchedLabel.textContent = 'DVSA Transport Manager · Up to ' + paxVal + '-Seat Fleet';
+        } else {
+          matchedLabel.textContent = 'Matched: ' + tierLabel;
+        }
+      }
+
+      if (modeStatus) {
+        if (modeVal === 'driver') {
+          modeStatus.textContent = '● CPC / DBS PSV Driver Dispatch';
+        } else if (modeVal === 'tm') {
+          modeStatus.textContent = '● DVSA O-Licence Governance';
+        } else {
+          modeStatus.textContent = '● Live Vehicle Capacity Matcher';
+        }
+      }
+    }
+
+    if (paxSlider) {
+      paxSlider.addEventListener('input', syncConsoleUI);
+      paxSlider.addEventListener('change', syncConsoleUI);
+    }
+
+    stepBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!paxSlider) return;
+        var delta = parseInt(btn.getAttribute('data-pax-step'), 10) || 0;
+        var cur = parseInt(paxSlider.value, 10) || 16;
+        var next = Math.min(70, Math.max(7, cur + delta));
+        paxSlider.value = String(next);
+        syncConsoleUI();
+      });
+    });
+
+    tierPills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        if (!paxSlider) return;
+        var targetPax = parseInt(pill.getAttribute('data-tier-pax'), 10);
+        if (!isNaN(targetPax)) {
+          paxSlider.value = String(targetPax);
+          syncConsoleUI();
+        }
+      });
+    });
+
+    matcherConsole.addEventListener('change', syncConsoleUI);
+    syncConsoleUI();
+
+    matcherConsole.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var paxVal = paxSlider ? parseInt(paxSlider.value, 10) : 16;
+      if (isNaN(paxVal) || paxVal < 7) paxVal = 16;
+      var checkedMode = matcherConsole.querySelector('input[name="type"]:checked');
+      var checkedSpec = matcherConsole.querySelector('input[name="spec"]:checked');
+      var modeVal = checkedMode ? checkedMode.value : 'hire';
+      var specVal = checkedSpec ? checkedSpec.value : 'Executive';
+
+      try {
+        window.localStorage.setItem(
+          CONSOLE_STORAGE_KEY,
+          JSON.stringify({ pax: paxVal, spec: specVal, type: modeVal, ts: Date.now() })
+        );
+      } catch (e) {
+        /* Ignore storage errors */
+      }
+
+      var dest =
+        'quote.html?pax=' +
+        encodeURIComponent(String(paxVal)) +
+        '&spec=' +
+        encodeURIComponent(specVal) +
+        '&type=' +
+        encodeURIComponent(modeVal) +
+        '#quote-form';
+      window.location.href = dest;
+    });
+  }
+
+  /* 3. Smart Instant Journey Quote Request Form (quote.html) */
   var quoteForm = document.getElementById('quote-form');
   if (!quoteForm) return;
 
@@ -54,8 +201,8 @@
   var paxInput = document.getElementById('passengers');
   var tierBannerText = document.getElementById('recommended-tier-text');
   var feedbackBox = document.getElementById('form-feedback');
+  var carryoverBanner = document.getElementById('console-carryover-banner');
 
-  /* Summary Sidebar Elements */
   var sumEnquiry = document.getElementById('sum-enquiry');
   var sumTrip = document.getElementById('sum-trip');
   var sumPax = document.getElementById('sum-pax');
@@ -63,19 +210,44 @@
   var sumSpec = document.getElementById('sum-spec');
   var sumOutbound = document.getElementById('sum-outbound');
 
-  function computeVehicleTier(pax) {
-    var n = parseInt(pax, 10);
-    if (isNaN(n) || n < 1) return 'Select 1–70 passengers';
-    if (n <= 8) return '7–8 Seater MPV / Minibus';
-    if (n <= 16) return '16-Seater Minibus';
-    if (n <= 35) return '24–35 Seater Midi-Coach';
-    if (n <= 70) return '49–70 Seater Full-Size Coach';
-    return 'Multi-Coach Fleet Charter (70+ pax)';
-  }
-
   function getCheckedValue(name, fallback) {
     var checked = quoteForm.querySelector('input[name="' + name + '"]:checked');
     return checked ? checked.value : fallback;
+  }
+
+  function applyConsoleParams(paxParam, specParam, typeParam) {
+    var applied = false;
+
+    if (paxParam && paxInput) {
+      var parsedPax = parseInt(paxParam, 10);
+      if (!isNaN(parsedPax) && parsedPax >= 1 && parsedPax <= 140) {
+        paxInput.value = String(parsedPax);
+        applied = true;
+      }
+    }
+    if (specParam) {
+      var specRadio = quoteForm.querySelector('input[name="fleet_spec"][value="' + specParam + '"]');
+      if (specRadio) {
+        specRadio.checked = true;
+        applied = true;
+      }
+    }
+    if (typeParam) {
+      var typeMap = {
+        hire: 'enq-hire',
+        driver: 'enq-driver',
+        tm: 'enq-tm'
+      };
+      var targetRadio = typeMap[typeParam] ? document.getElementById(typeMap[typeParam]) : null;
+      if (targetRadio) {
+        targetRadio.checked = true;
+        applied = true;
+      }
+    }
+
+    if (applied && carryoverBanner) {
+      carryoverBanner.hidden = false;
+    }
   }
 
   function syncFormState() {
@@ -86,7 +258,6 @@
     var recommendedTier = computeVehicleTier(paxVal);
     var outboundDate = document.getElementById('outbound-date');
 
-    /* Toggle Return Date & Time visibility */
     var isReturn = tripType === 'Return Journey';
     if (returnWrap) {
       returnWrap.hidden = !isReturn;
@@ -101,7 +272,6 @@
       tierBannerText.textContent = recommendedTier + ' (' + specType + ')';
     }
 
-    /* Update Live Dispatch Summary */
     if (sumEnquiry) sumEnquiry.textContent = enquiryType;
     if (sumTrip) sumTrip.textContent = isTransportMgr ? 'Operator Compliance' : tripType;
     if (sumPax) sumPax.textContent = isTransportMgr ? 'N/A (Operator)' : (paxVal || '—') + ' passengers';
@@ -112,31 +282,29 @@
     }
   }
 
-  /* Pre-populate from URL query parameters (?pax=16&spec=Executive&type=driver|tm|hire) */
+  /* Pre-populate from URL query parameters (?pax=16&spec=Executive&type=driver|tm|hire) or localStorage */
   try {
     var params = new URLSearchParams(window.location.search);
     var paxParam = params.get('pax');
     var specParam = params.get('spec');
     var typeParam = params.get('type');
 
-    if (paxParam && paxInput) {
-      var parsedPax = parseInt(paxParam, 10);
-      if (!isNaN(parsedPax) && parsedPax >= 1 && parsedPax <= 140) {
-        paxInput.value = String(parsedPax);
+    if (paxParam || specParam || typeParam) {
+      applyConsoleParams(paxParam, specParam, typeParam);
+      try {
+        window.localStorage.removeItem(CONSOLE_STORAGE_KEY);
+      } catch (err) {
+        /* Ignore */
       }
-    }
-    if (specParam) {
-      var specRadio = quoteForm.querySelector('input[name="fleet_spec"][value="' + specParam + '"]');
-      if (specRadio) specRadio.checked = true;
-    }
-    if (typeParam) {
-      var typeMap = {
-        hire: 'enq-hire',
-        driver: 'enq-driver',
-        tm: 'enq-tm'
-      };
-      var targetRadio = typeMap[typeParam] ? document.getElementById(typeMap[typeParam]) : null;
-      if (targetRadio) targetRadio.checked = true;
+    } else {
+      var rawStored = window.localStorage.getItem(CONSOLE_STORAGE_KEY);
+      if (rawStored) {
+        var parsedStored = JSON.parse(rawStored);
+        if (parsedStored && parsedStored.ts && Date.now() - parsedStored.ts < 600000) {
+          applyConsoleParams(parsedStored.pax, parsedStored.spec, parsedStored.type);
+        }
+        window.localStorage.removeItem(CONSOLE_STORAGE_KEY);
+      }
     }
   } catch (e) {
     /* Safe fallback */
@@ -163,12 +331,10 @@
     var tripType = getCheckedValue('trip_type', 'Return Journey');
     var isTransportMgr = enquiryType === 'External Transport Manager Enquiry';
 
-    /* Contact details always required */
     if (input.id === 'contact-name' || input.id === 'contact-phone' || input.id === 'contact-email') {
       return true;
     }
 
-    /* Journey fields required only when journey block is active */
     if (isTransportMgr) {
       return false;
     }
