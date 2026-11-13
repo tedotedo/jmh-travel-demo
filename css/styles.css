@@ -488,6 +488,13 @@ p {
     gap: 0.25rem;
   }
 
+  .brand-name,
+  .brand-sub,
+  .nav-link,
+  .header-cta-group .btn {
+    white-space: nowrap;
+  }
+
   .nav-link {
     padding: 0.52rem 0.82rem;
     font-size: 0.9rem;
@@ -500,6 +507,23 @@ p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1220px) {
+  .site-nav {
+    gap: 0.55rem;
+  }
+  .nav-link {
+    padding: 0.48rem 0.65rem;
+    font-size: 0.83rem;
+  }
+  .header-cta-group .btn-outline-dark {
+    display: none;
+  }
+  .header-cta-group .btn {
+    padding: 0.52rem 0.9rem;
+    font-size: 0.84rem;
   }
 }
 
