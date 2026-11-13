@@ -1807,3 +1807,25 @@ textarea[aria-invalid="true"] {
     min-width: 42px;
   }
 }
+
+/* === Android Chrome / Samsung Internet & 360px Polish === */
+a, button, summary, label, input, select {
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 389px) {
+  .brand-link {
+    gap: 0.48rem;
+  }
+  .brand-name {
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+  .brand-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0;
+  }
+  .nav-toggle {
+    padding: 0.42rem 0.58rem;
+    font-size: 0.78rem;
+  }
+}
