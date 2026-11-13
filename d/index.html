@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#00563B">
+  <title>JMH Travel Solutions | Concept D — Where Are You Going? (7 to 70 Seats, Teesside)</title>
+  <meta name="description" content="Concept D for JMH Travel Solutions Ltd: start with the journey. Pick airport run, wedding, school trip or race day, set your passenger numbers and request a quote for 7 to 70 seats.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Persistent Top Concept Banner + [A] [B] [C] [D] Switcher -->
+  <div class="concept-banner" role="region" aria-label="Concept website notice">
+    <div class="concept-banner__inner">
+      <p>Concept design by Mark Aszkenasy – not the official website of JMH Travel Solutions Ltd.</p>
+      <nav class="concept-switcher" aria-label="Switch concept version">
+        <span class="concept-switcher__label">Concept:</span>
+        <a class="concept-switcher__pill" href="../index.html"><span>A</span></a>
+        <a class="concept-switcher__pill" href="../b/index.html"><span>B</span></a>
+        <a class="concept-switcher__pill" href="../c/index.html"><span>C</span></a>
+        <a class="concept-switcher__pill is-active" href="index.html" aria-current="page"><span>D</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-head">
+    <div class="wrap site-head__inner">
+      <a class="brand" href="#top">
+        <img src="../images/logo-mark.svg" width="36" height="36" alt="">
+        <span>
+          <span class="brand__name">JMH Travel Solutions</span>
+          <span class="brand__meta">Eaglescliffe · Stockton-on-Tees</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Sections"><a href="#trip">Your journey</a><a href="#size">Group size</a><a href="#quote">Quote</a><a href="#trade">For operators</a></nav>
+      <a class="btn btn--hi site-head__cta" href="#quote">Get a quote</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="gantry" id="top" aria-labelledby="gantry-title">
+      <div class="wrap">
+        <div class="sign">
+          <p class="sign__route"><span class="rn">7</span><span class="rn rn--to">to</span><span class="rn">70</span> seats · Standard &amp; Executive</p>
+          <h1 class="sign__title" id="gantry-title">Where are you going?</h1>
+          <p class="sign__sub">Pick the journey. We match the vehicle.</p>
+        </div>
+
+        <div class="trips" id="trip" role="group" aria-label="Type of journey" data-trips></div>
+      </div>
+    </section>
+
+    <!-- Route panel -->
+    <section class="sec route" aria-labelledby="route-title">
+      <div class="wrap route__grid">
+        <div class="board" aria-live="polite">
+          <p class="board__from">From Teesside <span aria-hidden="true">↑</span></p>
+          <h2 class="board__title" id="route-title" data-route-title></h2>
+          <ul class="board__list" data-route-list></ul>
+          <p class="board__note" data-route-note></p>
+        </div>
+        <figure class="route__photo">
+          <img src="../images/hero.jpg" width="1200" height="896" alt="Illustrative image of a coach and a minibus" loading="lazy">
+          <figcaption class="illus">Illustrative image – not JMH's own vehicles. <span class="ph">[Exact vehicle specs &amp; photos – owner to confirm]</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Group size -->
+    <section class="sec size" id="size" aria-labelledby="size-title">
+      <div class="wrap size__grid">
+        <div>
+          <p class="eyebrow">Group size</p>
+          <h2 class="section-title" id="size-title">How many of you?</h2>
+          <div class="pax">
+            <output class="pax__n" for="pax" data-pax-n>28</output>
+            <span class="pax__label">passengers</span>
+          </div>
+          <input class="pax__range" id="pax" type="range" min="7" max="70" value="28" aria-label="Number of passengers">
+          <div class="pax__ends"><span>7</span><span>70</span></div>
+        </div>
+        <div class="vehicle" aria-live="polite">
+          <p class="vehicle__label">You need</p>
+          <p class="vehicle__name" data-vehicle></p>
+          <div class="seats" data-seats aria-hidden="true"></div>
+          <p class="vehicle__spare" data-spare></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="sec quote" id="quote" aria-labelledby="quote-title">
+      <div class="wrap quote__grid">
+        <div>
+          <p class="eyebrow">Two minutes</p>
+          <h2 class="section-title" id="quote-title">Get a quote</h2>
+          <p class="lead">Your journey type and group size are already filled in from above.</p>
+          <p class="quote__tel">Or call <a href="tel:01642058430">01642 058430</a></p>
+        </div>
+        <form class="form" data-quote novalidate>
+          <div class="summary" data-summary></div>
+          <div class="form__row form__row--half">
+            <div><label for="q-date">Date</label><input id="q-date" name="date" type="date" required></div>
+            <div><label for="q-time">Pick-up time</label><input id="q-time" name="time" type="time"></div>
+          </div>
+          <div class="form__row"><label for="q-from">Pick-up point</label><input id="q-from" name="from" type="text" placeholder="Town or postcode"></div>
+          <label class="check"><input type="checkbox" name="ret" checked><span>Return journey</span></label>
+          <div class="form__row form__row--half">
+            <div><label for="q-name">Name</label><input id="q-name" name="name" type="text" autocomplete="name" required></div>
+            <div><label for="q-phone">Phone</label><input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+          </div>
+          <p class="form__error" data-quote-error role="alert" hidden>Add a date, your name and a phone number.</p>
+          <button class="btn btn--hi btn--block" type="submit">Request my quote</button>
+          <p class="form__fine">Demo only. <span class="ph">[Confirmed booking email – owner to confirm]</span></p>
+          <div class="form__done" data-quote-done role="status" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Operators -->
+    <section class="sec trade" id="trade" aria-labelledby="trade-title">
+      <div class="wrap">
+        <p class="eyebrow">Trade entrance</p>
+        <h2 class="section-title" id="trade-title">For other operators</h2>
+        <div class="trade__grid">
+          <article class="plate"><h3>PSV driver hire</h3><p>Cover when your own drivers are off the road.</p><span class="ph">[Driver cover terms – owner to confirm]</span></article>
+          <article class="plate"><h3>External Transport Manager</h3><p>Compliance support for North East operators.</p><span class="ph">[Operator licence &amp; CPC details – owner to confirm]</span></article>
+        </div>
+        <p class="trade__where">Based in Eaglescliffe, Stockton-on-Tees. Covering the North East.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p class="foot__links">
+        <a href="../index.html">Concept A</a>
+        <a href="../b/index.html">Concept B</a>
+        <a href="../c/index.html">Concept C</a>
+        <a href="index.html" aria-current="page">Concept D</a>
+      </p>
+      <p><strong>Concept disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of JMH Travel Solutions Ltd. All bracketed items are placeholders awaiting owner confirmation. Destinations listed are examples, not confirmed routes or prices. No forms transmit data and no cookies are set.</p>
+      <p><strong>Illustrative image credit:</strong> Photographs shown on this concept page are AI-generated illustrative images used solely to demonstrate visual layout and do not depict the actual business, its work, products or premises.</p>
+    </div>
+  </footer>
+
+  <nav class="dock" aria-label="Quick actions"><a href="tel:01642058430">Call</a><a href="#trip">Journey</a><a class="dock__primary" href="#quote">Get a quote</a></nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
