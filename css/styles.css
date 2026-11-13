@@ -1829,3 +1829,87 @@ a, button, summary, label, input, select {
     font-size: 0.78rem;
   }
 }
+
+/* === Gallery Inspiration Polish (Awwwards / Godly / Mobbin) === */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+.scroll-progress-rail {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2.5px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: #F0A818;
+  pointer-events: none;
+  z-index: 20;
+  transition: transform 0.08s linear;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .reveal-ready.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  figure img {
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  figure:hover img {
+    transform: scale(1.028);
+  }
+  .swing-tag-shell {
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-style: preserve-3d;
+  }
+}
+
+button:active:not(:disabled),
+.btn:active,
+.quick-date-chip:active {
+  transform: scale(0.985);
+}
+
+.quick-date-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.48rem;
+}
+
+.quick-date-chip {
+  appearance: none;
+  border: 1px solid #94A3B8;
+  background-color: #F1F5F9;
+  color: #0E1A2B;
+  border-radius: 999px;
+  padding: 0.32rem 0.68rem;
+  min-height: 34px;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
+}
+
+.quick-date-chip:hover,
+.quick-date-chip.is-selected {
+  background-color: #0E1A2B;
+  color: #FFFFFF;
+  border-color: #0E1A2B;
+}
