@@ -122,7 +122,16 @@
         </div>
 
         <!-- Panoramic Widescreen Fleet Stage -->
-        <figure class="panoramic-frame">
+        <figure
+          class="panoramic-frame"
+          data-lightbox-src="images/hero.jpg"
+          data-lightbox-caption="7-seater to 70-seater Standard &amp; Executive passenger fleet · Eaglescliffe, Stockton-on-Tees &amp; North East"
+          data-lightbox-cta="quote.html?pax=16&amp;spec=Executive&amp;type=hire#quote-form"
+          tabindex="0"
+          role="button"
+          aria-label="Enlarge hero fleet photograph"
+        >
+          <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge Photo</span>
           <img
             src="images/hero.jpg"
             width="1440"
@@ -138,6 +147,7 @@
         <!-- Docked Overlapping Horizontal Console: Instant Fleet & Journey Matcher -->
         <div class="charter-console-dock" role="region" aria-label="Instant Fleet and Journey Matcher Console">
           <form id="charter-matcher-console" action="quote.html" method="get">
+            <input type="hidden" id="console-preset-key" name="preset" value="">
             <!-- 1. Service Mode Tabs -->
             <div class="console-mode-bar">
               <fieldset class="mode-tabs-fieldset">
@@ -158,6 +168,28 @@
                 </div>
               </fieldset>
               <span class="console-status-tag" id="console-mode-status">● Live Vehicle Capacity Matcher</span>
+            </div>
+
+            <!-- 1-Tap Dispatch Presets Strip -->
+            <div class="console-presets-strip">
+              <div class="presets-header-row">
+                <span class="presets-kicker">1-Tap Dispatch Presets</span>
+                <span class="cabin-tier-visual-badge" id="console-cabin-badge" aria-live="polite">🚐 16-Seater Minibus · Executive</span>
+              </div>
+              <div class="dispatch-presets-grid" role="group" aria-label="1-tap dispatch scenario presets">
+                <button type="button" class="dispatch-preset-pill" data-dispatch-preset="airport8">
+                  ✈️ 8-Seat Executive Airport Return
+                </button>
+                <button type="button" class="dispatch-preset-pill" data-dispatch-preset="group16">
+                  🏟️ 16-Seat Group Match/Race Day
+                </button>
+                <button type="button" class="dispatch-preset-pill" data-dispatch-preset="coach53">
+                  🚌 53-Seat Corporate/School Coach
+                </button>
+                <button type="button" class="dispatch-preset-pill" data-dispatch-preset="psvdriver">
+                  🪪 Trade PSV Relief Driver Cover
+                </button>
+              </div>
             </div>
 
             <!-- 2-4. Horizontal Interactive Controls -->
@@ -385,9 +417,71 @@
           </article>
         </div>
 
+        <!-- Executive Exterior & Cabin Detail Gallery (detail-1.jpg & detail-2.jpg) -->
+        <div class="editorial-photo-grid cols-2" aria-label="Executive coach exterior and cabin detail photography">
+          <figure
+            class="editorial-photo-card"
+            data-lightbox-src="images/detail-1.jpg"
+            data-lightbox-caption="Modern silver-and-navy executive touring coach prepared on paved morning forecourt · 24–70 passenger touring class"
+            data-lightbox-cta="quote.html?pax=53&amp;spec=Executive&amp;type=hire#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge executive touring coach exterior photograph"
+          >
+            <div class="photo-media">
+              <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+              <img
+                src="images/detail-1.jpg"
+                width="1200"
+                height="896"
+                alt="Sleek modern silver-and-navy executive touring coach parked on a paved morning forecourt"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              <span>Executive touring coach exterior · Regional &amp; UK-wide charter</span>
+              <span class="illustrative-tag">Illustrative image</span>
+            </figcaption>
+          </figure>
+
+          <figure
+            class="editorial-photo-card"
+            data-lightbox-src="images/detail-2.jpg"
+            data-lightbox-caption="Stitched dark leather reclining executive cabin seating with panoramic countryside views · Executive specification"
+            data-lightbox-cta="quote.html?pax=16&amp;spec=Executive&amp;type=hire#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge stitched leather executive cabin photograph"
+          >
+            <div class="photo-media">
+              <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+              <img
+                src="images/detail-2.jpg"
+                width="1200"
+                height="896"
+                alt="Luxury dark stitched leather reclining executive cabin interior with panoramic countryside views"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              <span>Stitched leather reclining executive cabin · Airport &amp; hospitality trim</span>
+              <span class="illustrative-tag">Illustrative image</span>
+            </figcaption>
+          </figure>
+        </div>
+
         <!-- Integrated Executive Cabin Showcase Strip with images/feature.jpg -->
         <div class="cabin-showcase-strip">
-          <figure class="fleet-figure">
+          <figure
+            class="fleet-figure"
+            data-lightbox-src="images/feature.jpg"
+            data-lightbox-caption="Executive coach cabin comfort with navy leather reclining seats, walnut armrests and overhead lockers"
+            data-lightbox-cta="quote.html?pax=32&amp;spec=Executive&amp;type=hire#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge executive coach cabin showcase photograph"
+          >
+            <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
             <img
               src="images/feature.jpg"
               width="1200"
@@ -443,7 +537,7 @@
               <ul class="spec-list">
                 <li>DBS-screened &amp; Driver CPC-qualified PSV licence holders</li>
                 <li>Experienced on minibuses, midi-coaches &amp; full-size PSVs</li>
-                <li>short-notice &amp; planned PSV driver dispatch across the North East</li>
+                <li>Short-notice &amp; planned PSV driver dispatch across the North East</li>
               </ul>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
@@ -534,11 +628,31 @@
     </div>
   </footer>
 
-  <!-- Solid Opaque Sticky Mobile Action Bar -->
+  <!-- Solid/Frosted Safe-Area Sticky Mobile Action Bar -->
   <div class="mobile-action-bar" role="region" aria-label="Quick mobile actions">
     <a class="btn btn-outline-light" href="tel:01642058430">Call 01642 058430</a>
     <a class="btn btn-amber" href="quote.html">Request Quote</a>
   </div>
+
+  <!-- Non-blocking Micro-Toast -->
+  <div id="micro-toast" class="micro-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <!-- Native Accessible Photo Lightbox -->
+  <dialog class="photo-lightbox" id="photo-lightbox" aria-labelledby="lightbox-caption">
+    <div class="lightbox-shell">
+      <div class="lightbox-topbar">
+        <span class="illustrative-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close-btn" id="lightbox-close" aria-label="Close photo preview">✕ Close</button>
+      </div>
+      <div class="lightbox-media-stage">
+        <img id="lightbox-img" src="images/hero.jpg" alt="">
+      </div>
+      <div class="lightbox-footer">
+        <p id="lightbox-caption">JMH Travel Solutions Ltd — 7 to 70 passenger seat fleet</p>
+        <a class="btn btn-amber btn-sm" id="lightbox-cta" href="quote.html#quote-form">Request Quote for This Tier →</a>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/main.js"></script>
 </body>

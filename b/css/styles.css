@@ -125,56 +125,83 @@ h1, h2, h3, h4 {
   letter-spacing: -0.02em;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 /* ==========================================================================
-   1. Top Concept Banner & Switcher
+   1. Top Concept Banner & Switcher (Compact <= 84px on 390px Mobile)
    ========================================================================== */
 .concept-banner {
   background-color: #030912;
   color: #FFFFFF;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 0.74rem;
+  line-height: 1.3;
   font-weight: 600;
-  padding: 0.45rem 0.75rem;
+  padding: 0.32rem 0.65rem;
   border-bottom: 2px solid var(--amber);
+}
+
+@media (min-width: 768px) {
+  .concept-banner {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.85rem;
+  }
 }
 
 .concept-banner-inner {
   max-width: var(--container-max);
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem 0.75rem;
-  text-align: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .concept-banner-inner {
+    justify-content: center;
+    gap: 0.5rem 0.9rem;
+    text-align: center;
+  }
 }
 
 .concept-banner p {
   margin: 0;
+  min-width: 0;
 }
 
 .concept-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.22rem;
   flex-shrink: 0;
 }
 
 .concept-switcher-label {
-  font-size: 0.73rem;
+  display: none;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--text-muted);
+  margin-right: 0.15rem;
+}
+
+@media (min-width: 560px) {
+  .concept-switcher-label {
+    display: inline;
+  }
 }
 
 .concept-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 42px;
-  min-height: 42px;
-  padding: 0 0.6rem;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0 0.5rem;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
@@ -196,15 +223,29 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   2. Night-Ops Telemetry Header
+   2. Night-Ops Telemetry Header + 2.5px Scroll Progress Hairline
    ========================================================================== */
 .telemetry-header {
   position: sticky;
   top: 0;
   z-index: 120;
   background: rgba(7, 17, 31, 0.96);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--navy-border);
+}
+
+.scroll-progress-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--emerald-bright) 0%, var(--amber) 100%);
+  pointer-events: none;
+  z-index: 30;
 }
 
 .header-bar {
@@ -396,20 +437,26 @@ h1, h2, h3, h4 {
    3. Full-Bleed Executive Coach & Minibus Hero Card
    ========================================================================== */
 .hero-deck {
-  padding: 1rem 0 1.35rem;
+  padding: 0.85rem 0 1.35rem;
 }
 
 .hero-telemetry-card {
   background: linear-gradient(150deg, #0E213B 0%, #07111F 100%);
   border: 1px solid var(--navy-border);
   border-radius: var(--radius-lg);
-  padding: 1.2rem;
+  padding: 1.05rem;
   display: grid;
-  gap: 1.35rem;
+  gap: 1.15rem;
   box-shadow: 0 22px 48px rgba(2, 6, 14, 0.55);
 }
 
-@media (min-width: 940px) {
+@media (max-width: 959px) {
+  .hero-fleet-frame {
+    order: -1;
+  }
+}
+
+@media (min-width: 960px) {
   .hero-deck {
     padding: 1.6rem 0 2rem;
   }
@@ -418,6 +465,9 @@ h1, h2, h3, h4 {
     align-items: center;
     padding: 2.3rem;
     gap: 2.1rem;
+  }
+  .hero-fleet-frame {
+    order: 0;
   }
 }
 
@@ -503,6 +553,27 @@ h1, h2, h3, h4 {
 .telemetry-readout-strip strong {
   font-family: var(--font-heading);
   font-size: 0.86rem;
+}
+
+[data-lightbox-src] {
+  position: relative;
+  cursor: zoom-in;
+}
+
+.b-zoom-badge {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 4;
+  padding: 0.24rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(4, 11, 20, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: var(--text-crisp);
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 800;
+  pointer-events: none;
 }
 
 .hero-fleet-frame,
@@ -608,7 +679,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   5. Horizontal Touch-Snap Fleet & B2B Tier Cards
+   5. Horizontal Touch-Snap Fleet & B2B Tier Cards + 01/06 Counter & Dots
    ========================================================================== */
 .deck-section {
   padding: 2.5rem 0;
@@ -633,6 +704,29 @@ h1, h2, h3, h4 {
 .deck-head-row h2 {
   font-size: clamp(1.45rem, 2.7vw, 2.15rem);
   margin: 0;
+}
+
+.rail-controls-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.rail-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  background: var(--navy-elevated);
+  border: 1px solid var(--navy-border);
+  color: var(--amber);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
 }
 
 .rail-arrows {
@@ -661,7 +755,7 @@ h1, h2, h3, h4 {
 .tier-snap-rail {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(270px, 84%);
+  grid-auto-columns: minmax(256px, 84%);
   gap: 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -688,11 +782,9 @@ h1, h2, h3, h4 {
   background: var(--navy-card);
   border: 1px solid var(--navy-border);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 0.65rem;
 }
 
 .tier-snap-card.b2b-card {
@@ -700,11 +792,49 @@ h1, h2, h3, h4 {
   border-color: #2E527B;
 }
 
+.snap-card-photo {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--navy-border);
+  background: #040B14;
+}
+
+.snap-card-photo img {
+  width: 100%;
+  aspect-ratio: 16 / 9.5;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .snap-card-photo:hover img {
+    transform: scale(1.04);
+  }
+}
+
+.snap-ill-tag {
+  position: absolute;
+  bottom: 0.55rem;
+  right: 0.55rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.snap-card-body {
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.85rem;
+  flex: 1;
+}
+
 .tier-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  margin-bottom: 0.45rem;
 }
 
 .tier-code {
@@ -733,13 +863,13 @@ h1, h2, h3, h4 {
 }
 
 .tier-snap-card h3 {
-  font-size: 1.22rem;
-  margin: 0;
+  font-size: 1.2rem;
+  margin: 0 0 0.4rem;
 }
 
 .tier-snap-card p {
-  margin: 0;
-  font-size: 0.9rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.89rem;
   color: var(--text-muted);
 }
 
@@ -747,6 +877,40 @@ h1, h2, h3, h4 {
   font-size: 0.75rem !important;
   font-weight: 700;
   color: var(--amber) !important;
+  margin-bottom: 0 !important;
+}
+
+.rail-dots-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.85rem;
+}
+
+.rail-dot {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0.55rem 0.25rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rail-dot::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #334E73;
+  transition: width 0.22s ease, background-color 0.22s ease;
+}
+
+.rail-dot.is-active::before {
+  width: 26px;
+  background: var(--amber);
 }
 
 /* ==========================================================================
@@ -1279,20 +1443,30 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+/* Frosted Glass Safe-Area Floating Dock + Form/Footer Auto-Clearance */
 .floating-dock {
   position: fixed;
   left: 0.75rem;
   right: 0.75rem;
   bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
   z-index: 160;
-  background: rgba(4, 11, 20, 0.96);
-  border: 1.5px solid var(--amber);
+  background: rgba(7, 17, 31, 0.96);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid rgba(245, 174, 36, 0.85);
   border-radius: 999px;
   padding: 0.36rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.4rem;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 36px rgba(0, 0, 0, 0.62);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+}
+
+.floating-dock.is-dock-hidden {
+  transform: translateY(130%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (min-width: 980px) {
@@ -1316,7 +1490,7 @@ h1, h2, h3, h4 {
 }
 
 .dock-tel {
-  background: var(--navy-card);
+  background: rgba(13, 28, 49, 0.98);
   color: var(--text-crisp);
   border: 1px solid var(--navy-border);
 }
@@ -1325,4 +1499,313 @@ h1, h2, h3, h4 {
   background: var(--amber);
   color: var(--navy-abyss);
 }
+
+/* ==========================================================================
+   9. 1-Tap Dispatch Presets, Micro-Toast, Lightbox & Owner-Receipt Ticket
+   ========================================================================== */
+.b-presets-bar {
+  background: var(--navy-abyss);
+  border: 1px solid var(--navy-border);
+  border-left: 4px solid var(--emerald);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.b-presets-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.b-presets-hint {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.b-presets-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+@media (min-width: 620px) {
+  .b-presets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.b-preset-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.48rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--navy-border);
+  background: var(--navy-card);
+  color: var(--text-crisp);
+  font-family: var(--font-heading);
+  font-size: 0.81rem;
+  font-weight: 700;
+  text-align: left;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.b-preset-pill:hover {
+  border-color: var(--amber);
+  background: var(--navy-elevated);
+}
+
+.b-preset-pill.is-active {
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: var(--navy-abyss);
+}
+
+/* Micro-Toast */
+.b-micro-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(5.4rem + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 14px);
+  z-index: 260;
+  max-width: min(92vw, 420px);
+  padding: 0.58rem 1rem;
+  border-radius: 999px;
+  background: rgba(7, 17, 31, 0.98);
+  color: var(--text-crisp);
+  border: 1.5px solid var(--amber);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.b-micro-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (min-width: 980px) {
+  .b-micro-toast {
+    left: auto;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    transform: translateY(14px);
+  }
+  .b-micro-toast.is-visible {
+    transform: translateY(0);
+  }
+}
+
+/* Native <dialog> Photo Lightbox */
+dialog.photo-lightbox {
+  width: min(94vw, 940px);
+  max-height: 92vh;
+  margin: auto;
+  padding: 0;
+  border: 2px solid var(--amber);
+  border-radius: var(--radius-lg);
+  background: #040B14;
+  color: var(--text-crisp);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.72);
+  overflow: hidden;
+}
+
+dialog.photo-lightbox::backdrop {
+  background: rgba(3, 9, 18, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lightbox-shell {
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;
+}
+
+.lightbox-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.95rem;
+  background: var(--navy-card);
+  border-bottom: 1px solid var(--navy-border);
+}
+
+.lightbox-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--navy-border);
+  background: var(--navy-elevated);
+  color: var(--text-crisp);
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.lightbox-close-btn:hover {
+  background: var(--amber);
+  color: var(--navy-abyss);
+  border-color: var(--amber);
+}
+
+.lightbox-media-stage {
+  background: #02060C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lightbox-media-stage img {
+  width: 100%;
+  max-height: 62vh;
+  object-fit: contain;
+}
+
+.lightbox-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--navy-card);
+  border-top: 1px solid var(--navy-border);
+}
+
+.lightbox-footer p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+/* Structured Owner-Receipt Ticket (Night-Ops Theme) */
+.b-demo-verbatim {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-heading);
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--emerald-bright);
+}
+
+.b-receipt-ticket {
+  background: var(--navy-abyss);
+  border: 1.5px solid var(--emerald);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  color: var(--text-crisp);
+  font-weight: 500;
+}
+
+.b-receipt-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--navy-border);
+}
+
+.b-receipt-title {
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--amber);
+}
+
+.b-receipt-ref {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--navy-elevated);
+  border: 1px solid var(--navy-border);
+  color: var(--emerald-bright);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.b-receipt-dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 580px) {
+  .b-receipt-dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .b-receipt-dl .full-span {
+    grid-column: 1 / -1;
+  }
+}
+
+.b-receipt-dl div {
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.68rem;
+}
+
+.b-receipt-dl dt {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.12rem;
+}
+
+.b-receipt-dl dd {
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-crisp);
+  word-break: break-word;
+}
+
+.b-receipt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--navy-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 

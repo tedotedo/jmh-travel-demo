@@ -28,6 +28,7 @@
 
   <!-- Precision Swiss App Header + Sticky Pill-Tab Bar -->
   <header class="swiss-header">
+    <div class="scroll-progress-rail" id="c-scroll-progress" aria-hidden="true"></div>
     <div class="container swiss-brand-bar">
       <a class="swiss-brand" href="#top" aria-label="JMH Travel Solutions Ltd — Eaglescliffe, Stockton-on-Tees and North East">
         <img src="../images/logo-mark.svg" width="36" height="36" alt="JMH Travel Solutions Ltd emblem">
@@ -99,7 +100,15 @@
             </div>
           </div>
 
-          <figure class="swiss-photo-card">
+          <figure
+            class="swiss-photo-card"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-caption="7–70 passenger seat fleet · Eaglescliffe, Stockton-on-Tees &amp; North East"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge hero fleet photograph"
+          >
+            <span class="c-zoom-badge" aria-hidden="true">⤢ Enlarge</span>
             <img
               src="../images/hero.jpg"
               width="1440"
@@ -181,53 +190,121 @@
 
         <div class="fleet-4grid">
           <article class="swiss-tier-card">
-            <div class="tier-head-bar">
-              <span class="tier-id">CLASS 01</span>
-              <span class="tier-range">7–8 Seats</span>
+            <figure
+              class="swiss-card-photo"
+              data-lightbox-src="../images/hero.jpg"
+              data-lightbox-caption="Class 01 · 7–8 Seater MPV / Minibus for door-to-terminal UK airport runs &amp; executive hospitality"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge Class 01 7–8 seater MPV photograph"
+            >
+              <img src="../images/hero.jpg" width="1440" height="803" alt="Executive minibus and coach lineup prepared at sunrise" loading="lazy">
+              <span class="ill-badge card-ill-badge">Illustrative image</span>
+            </figure>
+            <div class="swiss-card-body">
+              <div>
+                <div class="tier-head-bar">
+                  <span class="tier-id">CLASS 01</span>
+                  <span class="tier-range">7–8 Seats</span>
+                </div>
+                <h3>7–8 Seater MPV / Minibus</h3>
+                <p>Door-to-terminal UK airport runs, rail connections, executive hospitality and small private hires.</p>
+                <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
+              </div>
+              <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="8">Select 7–8 MPV →</button>
             </div>
-            <h3>7–8 Seater MPV / Minibus</h3>
-            <p>Door-to-terminal UK airport runs, rail connections, executive hospitality and small private hires.</p>
-            <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
-            <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="8">Select 7–8 MPV →</button>
           </article>
 
           <article class="swiss-tier-card">
-            <div class="tier-head-bar">
-              <span class="tier-id">CLASS 02</span>
-              <span class="tier-range">9–16 Seats</span>
+            <figure
+              class="swiss-card-photo"
+              data-lightbox-src="../images/detail-2.jpg"
+              data-lightbox-caption="Class 02 · 9–16 Seater Minibus with stitched leather Executive or practical Standard cabin"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge Class 02 9–16 seater minibus cabin photograph"
+            >
+              <img src="../images/detail-2.jpg" width="1200" height="896" alt="Luxury dark stitched leather reclining executive cabin interior with countryside views" loading="lazy">
+              <span class="ill-badge card-ill-badge">Illustrative image</span>
+            </figure>
+            <div class="swiss-card-body">
+              <div>
+                <div class="tier-head-bar">
+                  <span class="tier-id">CLASS 02</span>
+                  <span class="tier-range">9–16 Seats</span>
+                </div>
+                <h3>9–16 Seater Minibus</h3>
+                <p>Versatile group charter for race days, weddings, corporate site visits, coastal days and school fixtures.</p>
+                <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
+              </div>
+              <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="16">Select 9–16 Minibus →</button>
             </div>
-            <h3>9–16 Seater Minibus</h3>
-            <p>Versatile group charter for race days, weddings, corporate site visits, coastal days and school fixtures.</p>
-            <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
-            <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="16">Select 9–16 Minibus →</button>
           </article>
 
           <article class="swiss-tier-card">
-            <div class="tier-head-bar">
-              <span class="tier-id">CLASS 03</span>
-              <span class="tier-range">24–35 Seats</span>
+            <figure
+              class="swiss-card-photo"
+              data-lightbox-src="../images/detail-1.jpg"
+              data-lightbox-caption="Class 03 · 24–35 Seater Midi-Coach with balanced touring capacity and dedicated luggage bays"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge Class 03 24–35 seater midi-coach photograph"
+            >
+              <img src="../images/detail-1.jpg" width="1200" height="896" alt="Sleek modern silver-and-navy executive touring coach on paved morning forecourt" loading="lazy">
+              <span class="ill-badge card-ill-badge">Illustrative image</span>
+            </figure>
+            <div class="swiss-card-body">
+              <div>
+                <div class="tier-head-bar">
+                  <span class="tier-id">CLASS 03</span>
+                  <span class="tier-range">24–35 Seats</span>
+                </div>
+                <h3>24–35 Seater Midi-Coach</h3>
+                <p>Balanced touring seating with dedicated luggage bays for sports teams, conferences and regional charters.</p>
+                <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
+              </div>
+              <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="32">Select 24–35 Midi →</button>
             </div>
-            <h3>24–35 Seater Midi-Coach</h3>
-            <p>Balanced touring seating with dedicated luggage bays for sports teams, conferences and regional charters.</p>
-            <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
-            <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="32">Select 24–35 Midi →</button>
           </article>
 
           <article class="swiss-tier-card">
-            <div class="tier-head-bar">
-              <span class="tier-id">CLASS 04</span>
-              <span class="tier-range">49–70 Seats</span>
+            <figure
+              class="swiss-card-photo"
+              data-lightbox-src="../images/feature.jpg"
+              data-lightbox-caption="Class 04 · 49–70 Seater Full Coach in high-density school contract or UK Executive touring spec"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge Class 04 49–70 seater full coach cabin photograph"
+            >
+              <img src="../images/feature.jpg" width="1200" height="896" alt="Executive coach cabin interior with reclining navy leather seats, wooden armrests and overhead luggage racks" loading="lazy">
+              <span class="ill-badge card-ill-badge">Illustrative image</span>
+            </figure>
+            <div class="swiss-card-body">
+              <div>
+                <div class="tier-head-bar">
+                  <span class="tier-id">CLASS 04</span>
+                  <span class="tier-range">49–70 Seats</span>
+                </div>
+                <h3>49–70 Seater Full Coach</h3>
+                <p>High-density school contract transport up to 70 seats and long-distance UK Executive touring coaches.</p>
+                <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
+              </div>
+              <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="53">Select 49–70 Coach →</button>
             </div>
-            <h3>49–70 Seater Full Coach</h3>
-            <p>High-density school contract transport up to 70 seats and long-distance UK Executive touring coaches.</p>
-            <span class="ph-line">[Exact vehicle specs &amp; photos – owner to confirm]</span>
-            <button type="button" class="btn btn-outline-slate btn-sm" data-quick-stepper="hire" data-q-pax="53">Select 49–70 Coach →</button>
           </article>
         </div>
 
         <!-- Executive Cabin Split Strip -->
         <div class="cabin-swiss-strip">
-          <figure class="swiss-photo-card">
+          <figure
+            class="swiss-photo-card"
+            data-lightbox-src="../images/feature.jpg"
+            data-lightbox-caption="Standard &amp; Executive cabin trims matched to journey type across 7–70 seats"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge executive coach cabin showcase photograph"
+          >
+            <span class="c-zoom-badge" aria-hidden="true">⤢ Enlarge</span>
             <img
               src="../images/feature.jpg"
               width="1200"
@@ -308,6 +385,23 @@
               <span class="emerald-dot" aria-hidden="true"></span>
               <span>Prefer Phone? 01642 058430</span>
             </a>
+          </div>
+
+          <!-- 1-Tap Dispatch Presets + Live Visual Cabin Tier Badge -->
+          <div class="c-presets-bar" role="group" aria-label="1-tap dispatch presets">
+            <div class="c-presets-head">
+              <span class="c-presets-label">1-Tap Dispatch Presets:</span>
+              <span class="c-cabin-visual-badge" id="c-cabin-visual-badge" aria-live="polite">
+                <span class="c-cabin-dot" aria-hidden="true"></span>
+                <span>9–16 Minibus · Executive Cabin</span>
+              </span>
+            </div>
+            <div class="c-presets-grid">
+              <button type="button" class="c-preset-pill" data-c-preset="airport8">✈️ 8-Seat Executive Airport Return</button>
+              <button type="button" class="c-preset-pill" data-c-preset="group16">🏟️ 16-Seat Group Match/Race Day</button>
+              <button type="button" class="c-preset-pill" data-c-preset="coach53">🚌 53-Seat Corporate/School Coach</button>
+              <button type="button" class="c-preset-pill" data-c-preset="psvdriver">🪪 Trade PSV Relief Driver Cover</button>
+            </div>
           </div>
 
           <!-- 3-Step Progress Header -->
@@ -556,11 +650,31 @@
     </div>
   </footer>
 
-  <!-- Safe-Area Sticky Mobile Bottom Bar -->
-  <div class="swiss-mobile-bar" role="region" aria-label="Quick mobile dispatch actions">
+  <!-- Frosted Glass Safe-Area Floating Dock -->
+  <div class="swiss-mobile-bar" id="c-floating-dock" role="region" aria-label="Quick mobile dispatch actions">
     <a class="btn btn-outline-slate" href="tel:01642058430">Call 01642 058430</a>
     <a class="btn btn-emerald" href="#instant-quote">Instant Quote</a>
   </div>
+
+  <!-- Non-Blocking Micro-Toast Pill -->
+  <div id="c-micro-toast" class="c-micro-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <!-- Accessible Native Photo Lightbox -->
+  <dialog class="photo-lightbox" id="c-photo-lightbox" aria-labelledby="c-lightbox-caption">
+    <div class="lightbox-surface">
+      <div class="lightbox-top-bar">
+        <span class="ill-badge">Illustrative image</span>
+        <button type="button" class="lightbox-close-btn" id="c-lightbox-close" aria-label="Close enlarged photo">✕ Close</button>
+      </div>
+      <div class="lightbox-media-wrap">
+        <img id="c-lightbox-img" src="../images/hero.jpg" width="1440" height="803" alt="Enlarged fleet photograph">
+      </div>
+      <div class="lightbox-footer-bar">
+        <p id="c-lightbox-caption" class="lightbox-caption">7–70 passenger seat fleet · Eaglescliffe, Stockton-on-Tees &amp; North East</p>
+        <a class="btn btn-emerald btn-sm" id="c-lightbox-cta" href="#instant-quote">Configure 3-Step Quote →</a>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/app.js"></script>
 </body>

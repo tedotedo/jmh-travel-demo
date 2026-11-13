@@ -264,6 +264,84 @@
           </article>
         </div>
 
+        <!-- Executive Fleet & Cabin Editorial Triptych (hero.jpg, detail-1.jpg, detail-2.jpg) -->
+        <div class="editorial-photo-grid cols-3" aria-label="Executive vehicle exterior and interior showcase">
+          <figure
+            class="editorial-photo-card"
+            data-lightbox-src="images/hero.jpg"
+            data-lightbox-caption="7-seater to 70-seater executive coach &amp; minibus lineup · Eaglescliffe, Stockton-on-Tees &amp; North East"
+            data-lightbox-cta="quote.html?pax=16&amp;spec=Executive&amp;type=hire#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge executive coach and minibus lineup photograph"
+          >
+            <div class="photo-media">
+              <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+              <img
+                src="images/hero.jpg"
+                width="1440"
+                height="803"
+                alt="Spotless silver executive touring coach parked beside a dark metallic executive minibus at sunrise"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              <span>7–70 seat charter lineup · MPV to full coach</span>
+              <span class="illustrative-tag">Illustrative image</span>
+            </figcaption>
+          </figure>
+
+          <figure
+            class="editorial-photo-card"
+            data-lightbox-src="images/detail-1.jpg"
+            data-lightbox-caption="Modern silver-and-navy executive touring coach on paved morning forecourt · 24–70 passenger touring class"
+            data-lightbox-cta="quote.html?pax=53&amp;spec=Executive&amp;type=hire#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge modern silver-and-navy touring coach photograph"
+          >
+            <div class="photo-media">
+              <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+              <img
+                src="images/detail-1.jpg"
+                width="1200"
+                height="896"
+                alt="Sleek modern silver-and-navy executive touring coach parked on a paved morning forecourt"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              <span>Touring coach exterior · UK motorway &amp; contract spec</span>
+              <span class="illustrative-tag">Illustrative image</span>
+            </figcaption>
+          </figure>
+
+          <figure
+            class="editorial-photo-card"
+            data-lightbox-src="images/detail-2.jpg"
+            data-lightbox-caption="Luxury dark stitched leather reclining executive cabin interior with panoramic countryside views"
+            data-lightbox-cta="quote.html?pax=8&amp;spec=Executive&amp;type=hire#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge stitched leather reclining cabin photograph"
+          >
+            <div class="photo-media">
+              <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+              <img
+                src="images/detail-2.jpg"
+                width="1200"
+                height="896"
+                alt="Luxury dark stitched leather reclining executive cabin interior with panoramic countryside views"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              <span>Reclining stitched leather cabin · Airport &amp; VIP trim</span>
+              <span class="illustrative-tag">Illustrative image</span>
+            </figcaption>
+          </figure>
+        </div>
+
         <!-- Standard vs Executive Cabin Comparison -->
         <div class="cabin-showcase-strip">
           <div>
@@ -283,7 +361,16 @@
             </div>
           </div>
 
-          <figure class="fleet-figure">
+          <figure
+            class="fleet-figure"
+            data-lightbox-src="images/feature.jpg"
+            data-lightbox-caption="Executive leather coach seats with walnut armrests, central aisle carpet and overhead luggage storage"
+            data-lightbox-cta="quote.html?pax=32&amp;spec=Executive&amp;type=hire#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge executive coach seating photograph"
+          >
+            <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
             <img
               src="images/feature.jpg"
               width="1200"
@@ -323,7 +410,7 @@
               <ul class="spec-list">
                 <li><strong>Vetted Professionals:</strong> DBS-screened and Driver CPC-compliant PSV drivers</li>
                 <li><strong>Versatile Deployment:</strong> Experienced across school runs, contracted services and private coach/minibus hires</li>
-                <li><strong>Round-the-Clock Response:</strong> short-notice &amp; planned cover on <a href="tel:01642058430" style="color: #FFFFFF; font-weight: 700;">01642 058430</a></li>
+                <li><strong>Rapid Dispatch Response:</strong> Short-notice &amp; planned cover on <a href="tel:01642058430" style="color: #FFFFFF; font-weight: 700;">01642 058430</a></li>
               </ul>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.7rem;">
@@ -392,6 +479,26 @@
     <a class="btn btn-outline-light" href="tel:01642058430">Call 01642 058430</a>
     <a class="btn btn-amber" href="quote.html">Request Quote</a>
   </div>
+
+  <!-- Non-blocking Micro-Toast -->
+  <div id="micro-toast" class="micro-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <!-- Native Accessible Photo Lightbox -->
+  <dialog class="photo-lightbox" id="photo-lightbox" aria-labelledby="lightbox-caption">
+    <div class="lightbox-shell">
+      <div class="lightbox-topbar">
+        <span class="illustrative-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close-btn" id="lightbox-close" aria-label="Close photo preview">✕ Close</button>
+      </div>
+      <div class="lightbox-media-stage">
+        <img id="lightbox-img" src="images/hero.jpg" alt="">
+      </div>
+      <div class="lightbox-footer">
+        <p id="lightbox-caption">JMH Travel Solutions Ltd — 7 to 70 passenger seat fleet</p>
+        <a class="btn btn-amber btn-sm" id="lightbox-cta" href="quote.html#quote-form">Request Quote for This Tier →</a>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/main.js"></script>
 </body>

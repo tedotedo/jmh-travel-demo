@@ -28,6 +28,7 @@
 
   <!-- Night-Ops Telemetry Header -->
   <header class="telemetry-header">
+    <div class="scroll-progress-rail" id="b-scroll-progress" aria-hidden="true"></div>
     <div class="container header-bar">
       <a class="brand-lockup" href="#top" aria-label="JMH Travel Solutions Ltd — Eaglescliffe, Stockton-on-Tees and North East">
         <img class="brand-mark" src="../images/logo-mark.svg" width="38" height="38" alt="JMH Travel Solutions Ltd geometric road-stripe emblem">
@@ -93,7 +94,15 @@
             </div>
           </div>
 
-          <figure class="hero-fleet-frame">
+          <figure
+            class="hero-fleet-frame"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-caption="7–70 seater Standard &amp; Executive fleet · Eaglescliffe, Stockton-on-Tees &amp; North East"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge hero fleet photograph"
+          >
+            <span class="b-zoom-badge" aria-hidden="true">⤢ Enlarge</span>
             <img
               src="../images/hero.jpg"
               width="1440"
@@ -143,97 +152,193 @@
             <span class="telemetry-kicker">6 Operational Units · Swipe or Select</span>
             <h2 id="fleet-deck-heading">7–70 Seat Fleet Tiers &amp; Trade PSV Division</h2>
           </div>
-          <div class="rail-arrows" aria-label="Scroll fleet tier cards">
-            <button type="button" class="rail-btn" data-rail-dir="-1" aria-label="Previous tier card">←</button>
-            <button type="button" class="rail-btn" data-rail-dir="1" aria-label="Next tier card">→</button>
+          <div class="rail-controls-group" aria-label="Scroll fleet tier cards">
+            <span class="rail-counter-pill" id="b-rail-counter" aria-live="polite">01 / 06</span>
+            <div class="rail-arrows">
+              <button type="button" class="rail-btn" data-rail-dir="-1" aria-label="Previous tier card">←</button>
+              <button type="button" class="rail-btn" data-rail-dir="1" aria-label="Next tier card">→</button>
+            </div>
           </div>
         </div>
 
         <div class="tier-snap-rail" id="fleet-snap-rail" tabindex="0" role="region" aria-label="Swipeable fleet and PSV cards">
           <!-- Card 1: 7-8 MPV -->
           <article class="tier-snap-card">
-            <div class="tier-top">
-              <span class="tier-code">TIER 01 · CHARTER</span>
-              <span class="pax-pill emerald">7–8 PAX</span>
+            <figure
+              class="snap-card-photo"
+              data-lightbox-src="../images/hero.jpg"
+              data-lightbox-caption="Tier 01 · 7–8 Seater MPV / Minibus for door-to-terminal UK airport runs &amp; executive hospitality"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge 7–8 seater MPV photograph"
+            >
+              <img src="../images/hero.jpg" width="1440" height="803" alt="Executive minibus and coach lineup prepared at dawn" loading="lazy">
+              <span class="ill-tag snap-ill-tag">Illustrative image</span>
+            </figure>
+            <div class="snap-card-body">
+              <div>
+                <div class="tier-top">
+                  <span class="tier-code">TIER 01 · CHARTER</span>
+                  <span class="pax-pill emerald">7–8 PAX</span>
+                </div>
+                <h3>7–8 MPV</h3>
+                <p>Door-to-terminal UK airport transfers, rail connections, corporate hospitality and compact private group travel with dedicated luggage space.</p>
+                <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
+              </div>
+              <button type="button" class="btn btn-emerald-solid btn-sm" data-load-quote="hire" data-pax="8">
+                Quote 7–8 MPV →
+              </button>
             </div>
-            <h3>7–8 MPV</h3>
-            <p>Door-to-terminal UK airport transfers, rail connections, corporate hospitality and compact private group travel with dedicated luggage space.</p>
-            <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
-            <button type="button" class="btn btn-emerald-solid btn-sm" data-load-quote="hire" data-pax="8">
-              Quote 7–8 MPV →
-            </button>
           </article>
 
           <!-- Card 2: 9-16 Minibus -->
           <article class="tier-snap-card">
-            <div class="tier-top">
-              <span class="tier-code">TIER 02 · CHARTER</span>
-              <span class="pax-pill emerald">9–16 PAX</span>
+            <figure
+              class="snap-card-photo"
+              data-lightbox-src="../images/detail-2.jpg"
+              data-lightbox-caption="Tier 02 · 9–16 Seater Minibus with stitched leather Executive or practical Standard cabin"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge 9–16 seater minibus cabin photograph"
+            >
+              <img src="../images/detail-2.jpg" width="1200" height="896" alt="Luxury dark stitched leather reclining executive cabin interior with countryside views" loading="lazy">
+              <span class="ill-tag snap-ill-tag">Illustrative image</span>
+            </figure>
+            <div class="snap-card-body">
+              <div>
+                <div class="tier-top">
+                  <span class="tier-code">TIER 02 · CHARTER</span>
+                  <span class="pax-pill emerald">9–16 PAX</span>
+                </div>
+                <h3>9–16 Minibus</h3>
+                <p>Nimble Standard or Executive 16-seater minibus hire for corporate site visits, race days, weddings, golf trips and school fixtures.</p>
+                <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
+              </div>
+              <button type="button" class="btn btn-emerald-solid btn-sm" data-load-quote="hire" data-pax="16">
+                Quote 9–16 Minibus →
+              </button>
             </div>
-            <h3>9–16 Minibus</h3>
-            <p>Nimble Standard or Executive 16-seater minibus hire for corporate site visits, race days, weddings, golf trips and school fixtures.</p>
-            <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
-            <button type="button" class="btn btn-emerald-solid btn-sm" data-load-quote="hire" data-pax="16">
-              Quote 9–16 Minibus →
-            </button>
           </article>
 
           <!-- Card 3: 24-35 Midi-Coach -->
           <article class="tier-snap-card">
-            <div class="tier-top">
-              <span class="tier-code">TIER 03 · CHARTER</span>
-              <span class="pax-pill amber">17–35 PAX</span>
+            <figure
+              class="snap-card-photo"
+              data-lightbox-src="../images/detail-1.jpg"
+              data-lightbox-caption="Tier 03 · 24–35 Seater Midi-Coach with touring comfort and dedicated underfloor luggage bays"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge 24–35 seater midi-coach photograph"
+            >
+              <img src="../images/detail-1.jpg" width="1200" height="896" alt="Sleek modern silver-and-navy executive touring coach on paved morning forecourt" loading="lazy">
+              <span class="ill-tag snap-ill-tag">Illustrative image</span>
+            </figure>
+            <div class="snap-card-body">
+              <div>
+                <div class="tier-top">
+                  <span class="tier-code">TIER 03 · CHARTER</span>
+                  <span class="pax-pill amber">17–35 PAX</span>
+                </div>
+                <h3>24–35 Midi-Coach</h3>
+                <p>Mid-sized touring comfort with generous luggage bays — bridging a 16-seater minibus and full-size coach for sports clubs and conferences.</p>
+                <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
+              </div>
+              <button type="button" class="btn btn-amber btn-sm" data-load-quote="hire" data-pax="32">
+                Quote 24–35 Midi →
+              </button>
             </div>
-            <h3>24–35 Midi-Coach</h3>
-            <p>Mid-sized touring comfort with generous luggage bays — bridging a 16-seater minibus and full-size coach for sports clubs and conferences.</p>
-            <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
-            <button type="button" class="btn btn-amber btn-sm" data-load-quote="hire" data-pax="32">
-              Quote 24–35 Midi →
-            </button>
           </article>
 
           <!-- Card 4: 49-70 Exec Coach -->
           <article class="tier-snap-card">
-            <div class="tier-top">
-              <span class="tier-code">TIER 04 · CHARTER</span>
-              <span class="pax-pill amber">36–70 PAX</span>
+            <figure
+              class="snap-card-photo"
+              data-lightbox-src="../images/feature.jpg"
+              data-lightbox-caption="Tier 04 · 49–70 Seater Full Coach available in high-capacity contract or Executive UK touring spec"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge 49–70 seater executive coach cabin photograph"
+            >
+              <img src="../images/feature.jpg" width="1200" height="896" alt="Executive touring coach cabin with dark navy reclining seats, walnut trim and panoramic glazing" loading="lazy">
+              <span class="ill-tag snap-ill-tag">Illustrative image</span>
+            </figure>
+            <div class="snap-card-body">
+              <div>
+                <div class="tier-top">
+                  <span class="tier-code">TIER 04 · CHARTER</span>
+                  <span class="pax-pill amber">36–70 PAX</span>
+                </div>
+                <h3>49–70 Exec Coach</h3>
+                <p>High-capacity school contract transport up to 70 seats alongside long-distance UK motorway Executive touring coaches.</p>
+                <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
+              </div>
+              <button type="button" class="btn btn-amber btn-sm" data-load-quote="hire" data-pax="53">
+                Quote 49–70 Coach →
+              </button>
             </div>
-            <h3>49–70 Exec Coach</h3>
-            <p>High-capacity school contract transport up to 70 seats alongside long-distance UK motorway Executive touring coaches.</p>
-            <p class="ph-note">[Exact vehicle specs &amp; photos – owner to confirm]</p>
-            <button type="button" class="btn btn-amber btn-sm" data-load-quote="hire" data-pax="53">
-              Quote 49–70 Coach →
-            </button>
           </article>
 
           <!-- Card 5: PSV Driver Cover -->
           <article class="tier-snap-card b2b-card">
-            <div class="tier-top">
-              <span class="tier-code">B2B TRADE · DRIVER HIRE</span>
-              <span class="pax-pill emerald">CPC &amp; DBS</span>
+            <figure
+              class="snap-card-photo"
+              data-lightbox-src="../images/detail-1.jpg"
+              data-lightbox-caption="B2B Trade · CPC &amp; DBS-vetted PSV relief driver cover for North East O-licence operators"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge PSV driver cover coach photograph"
+            >
+              <img src="../images/detail-1.jpg" width="1200" height="896" alt="Silver-and-navy PSV coach prepared on morning depot forecourt" loading="lazy">
+              <span class="ill-tag snap-ill-tag">Illustrative image</span>
+            </figure>
+            <div class="snap-card-body">
+              <div>
+                <div class="tier-top">
+                  <span class="tier-code">B2B TRADE · DRIVER HIRE</span>
+                  <span class="pax-pill emerald">CPC &amp; DBS</span>
+                </div>
+                <h3>PSV Driver Cover</h3>
+                <p>Specialist short-notice and planned PSV driver relief for fellow North East bus, coach and minibus O-licence operators.</p>
+                <p class="ph-note">[Operator licence &amp; CPC details – owner to confirm]</p>
+              </div>
+              <button type="button" class="btn btn-emerald-solid btn-sm" data-load-quote="driver" data-pax="32">
+                Book PSV Driver Cover →
+              </button>
             </div>
-            <h3>PSV Driver Cover</h3>
-            <p>Specialist short-notice and planned PSV driver relief for fellow North East bus, coach and minibus O-licence operators.</p>
-            <p class="ph-note">[Operator licence &amp; CPC details – owner to confirm]</p>
-            <button type="button" class="btn btn-emerald-solid btn-sm" data-load-quote="driver" data-pax="32">
-              Book PSV Driver Cover →
-            </button>
           </article>
 
           <!-- Card 6: External Transport Manager -->
           <article class="tier-snap-card b2b-card">
-            <div class="tier-top">
-              <span class="tier-code">B2B TRADE · COMPLIANCE</span>
-              <span class="pax-pill amber">DVSA / O-LICENCE</span>
+            <figure
+              class="snap-card-photo"
+              data-lightbox-src="../images/hero.jpg"
+              data-lightbox-caption="B2B Trade · Statutory DVSA External Transport Manager governance for O-licence operators"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge External Transport Manager fleet photograph"
+            >
+              <img src="../images/hero.jpg" width="1440" height="803" alt="PSV coach and minibus operator lineup for DVSA transport management" loading="lazy">
+              <span class="ill-tag snap-ill-tag">Illustrative image</span>
+            </figure>
+            <div class="snap-card-body">
+              <div>
+                <div class="tier-top">
+                  <span class="tier-code">B2B TRADE · COMPLIANCE</span>
+                  <span class="pax-pill amber">DVSA / O-LICENCE</span>
+                </div>
+                <h3>External Transport Manager</h3>
+                <p>Statutory DVSA governance, O-licence administration, preventative maintenance wallcharts, defect oversight and tachograph auditing.</p>
+                <p class="ph-note">[Operator licence &amp; CPC details – owner to confirm]</p>
+              </div>
+              <button type="button" class="btn btn-amber btn-sm" data-load-quote="tm" data-pax="16">
+                Enquire Transport Mgr →
+              </button>
             </div>
-            <h3>External Transport Manager</h3>
-            <p>Statutory DVSA governance, O-licence administration, preventative maintenance wallcharts, defect oversight and tachograph auditing.</p>
-            <p class="ph-note">[Operator licence &amp; CPC details – owner to confirm]</p>
-            <button type="button" class="btn btn-amber btn-sm" data-load-quote="tm" data-pax="16">
-              Enquire Transport Mgr →
-            </button>
           </article>
         </div>
+
+        <!-- Synced Snap Dot Indicators -->
+        <div class="rail-dots-bar" id="b-rail-dots" role="group" aria-label="Select fleet card"></div>
       </div>
     </section>
 
@@ -304,7 +409,15 @@
 
           <!-- Executive vs Standard Cabin Feature Card -->
           <div class="cabin-feature-panel">
-            <figure class="cabin-photo-wrap">
+            <figure
+              class="cabin-photo-wrap"
+              data-lightbox-src="../images/feature.jpg"
+              data-lightbox-caption="Executive &amp; Standard cabin options across 7–70 seats · Reclining leather seating &amp; overhead lockers"
+              tabindex="0"
+              role="button"
+              aria-label="Enlarge executive coach cabin photograph"
+            >
+              <span class="b-zoom-badge" aria-hidden="true">⤢ Enlarge</span>
               <img
                 src="../images/feature.jpg"
                 width="1200"
@@ -343,7 +456,29 @@
               <p>Complete your journey or trade PSV requirement below for structured dispatch pricing across Eaglescliffe, Stockton-on-Tees and the North East.</p>
             </div>
             <div class="active-match-chip" id="quote-live-chip" aria-live="polite">
-              Matched: 16 Seats · Executive
+              🚐 9–16 Seater Minibus · Executive
+            </div>
+          </div>
+
+          <!-- 1-Tap Dispatch Presets -->
+          <div class="b-presets-bar" role="region" aria-label="1-Tap Dispatch Presets">
+            <div class="b-presets-top">
+              <span class="telemetry-kicker" style="margin: 0;">1-Tap Dispatch Presets</span>
+              <span class="b-presets-hint">Tap to pre-fill service, seats &amp; route</span>
+            </div>
+            <div class="b-presets-grid" role="group" aria-label="Quick dispatch scenario presets">
+              <button type="button" class="b-preset-pill" data-b-preset="airport8">
+                ✈️ 8-Seat Executive Airport Return
+              </button>
+              <button type="button" class="b-preset-pill" data-b-preset="group16">
+                🏟️ 16-Seat Group Match/Race Day
+              </button>
+              <button type="button" class="b-preset-pill" data-b-preset="coach53">
+                🚌 53-Seat Corporate/School Coach
+              </button>
+              <button type="button" class="b-preset-pill" data-b-preset="psvdriver">
+                🪪 Trade PSV Relief Driver Cover
+              </button>
             </div>
           </div>
 
@@ -551,6 +686,26 @@
     <a class="dock-pill dock-tel" href="tel:01642058430">Call 01642 058430</a>
     <a class="dock-pill dock-cta" href="#telemetry-quote">Instant Quote</a>
   </div>
+
+  <!-- Non-blocking Micro-Toast -->
+  <div id="b-micro-toast" class="b-micro-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <!-- Native Accessible Photo Lightbox -->
+  <dialog class="photo-lightbox" id="b-photo-lightbox" aria-labelledby="b-lightbox-caption">
+    <div class="lightbox-shell">
+      <div class="lightbox-topbar">
+        <span class="ill-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close-btn" id="b-lightbox-close" aria-label="Close photo preview">✕ Close</button>
+      </div>
+      <div class="lightbox-media-stage">
+        <img id="b-lightbox-img" src="../images/hero.jpg" alt="">
+      </div>
+      <div class="lightbox-footer">
+        <p id="b-lightbox-caption">JMH Travel Solutions Ltd — 7 to 70 passenger seat fleet</p>
+        <a class="btn btn-amber btn-sm" id="b-lightbox-cta" href="#telemetry-quote">Jump to Charter Quote ↓</a>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/app.js"></script>
 </body>

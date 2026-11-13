@@ -1,10 +1,114 @@
 /* ==========================================================================
    JMH Travel Solutions Ltd — Concept B: Night-Ops Telemetry Interactions
-   Snap Fleet Rail, 7–70 Seat Thumb Matcher, Synced Date Chips & Quote Validation
+   Scroll Hairline, 01/06 Snap Rail + Dots, Lightbox, Presets, Dock & Receipt
    ========================================================================== */
 
 (function () {
   'use strict';
+
+  var toastTimer = null;
+
+  var DISPATCH_PRESETS = {
+    airport8: {
+      label: '8-Seat Executive Airport Return',
+      service: 'Minibus / Coach Charter',
+      radioId: 'b-svc-hire',
+      pax: 8,
+      spec: 'Executive',
+      trip: 'Return Journey',
+      pickup: 'Eaglescliffe / Stockton-on-Tees',
+      dropoff: 'Newcastle International Airport',
+      notes: 'Door-to-terminal airport return with suitcase luggage space (06:30 outbound).'
+    },
+    group16: {
+      label: '16-Seat Group Match/Race Day',
+      service: 'Minibus / Coach Charter',
+      radioId: 'b-svc-hire',
+      pax: 16,
+      spec: 'Executive',
+      trip: 'Return Journey',
+      pickup: 'Yarm / Stockton-on-Tees',
+      dropoff: 'York Racecourse',
+      notes: 'Group hospitality return charter — morning outbound, evening return.'
+    },
+    coach53: {
+      label: '53-Seat Corporate/School Coach',
+      service: 'Minibus / Coach Charter',
+      radioId: 'b-svc-hire',
+      pax: 53,
+      spec: 'Executive',
+      trip: 'Return Journey',
+      pickup: 'Stockton-on-Tees',
+      dropoff: 'Durham Regional Venue',
+      notes: 'Full-size 53-seat coach movement with scheduled group pickup.'
+    },
+    psvdriver: {
+      label: 'Trade PSV Relief Driver Cover',
+      service: 'PSV Driver Cover (B2B)',
+      radioId: 'b-svc-driver',
+      pax: 32,
+      spec: 'Standard',
+      trip: 'Return Journey',
+      pickup: 'Teesside Operator Depot',
+      dropoff: 'North East Contracted Route',
+      notes: 'CPC & DBS-vetted PSV relief driver cover for O-licence operator route.'
+    }
+  };
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function showToast(message) {
+    var toast = document.getElementById('b-micro-toast');
+    if (!toast) return;
+    if (toastTimer) clearTimeout(toastTimer);
+    toast.textContent = message;
+    toast.hidden = false;
+    window.requestAnimationFrame(function () {
+      toast.classList.add('is-visible');
+    });
+    toastTimer = window.setTimeout(function () {
+      toast.classList.remove('is-visible');
+      window.setTimeout(function () {
+        if (!toast.classList.contains('is-visible')) {
+          toast.hidden = true;
+        }
+      }, 240);
+    }, 2600);
+  }
+
+  function copyTextToClipboard(text, onDone) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onDone).catch(function () {
+        fallbackCopy(text, onDone);
+      });
+    } else {
+      fallbackCopy(text, onDone);
+    }
+  }
+
+  function fallbackCopy(text, onDone) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+    } catch (e) {
+      /* Ignore */
+    }
+    document.body.removeChild(ta);
+    if (onDone) onDone();
+  }
 
   function getTierKey(pax) {
     var n = parseInt(pax, 10) || 16;
@@ -23,17 +127,208 @@
     return 'Multi-Vehicle Charter (70+ Seats)';
   }
 
-  /* 1. Horizontal Touch-Snap Fleet Rail Arrows */
+  function getTierIcon(pax) {
+    var n = parseInt(pax, 10) || 16;
+    if (n <= 8) return '✈️';
+    if (n <= 16) return '🚐';
+    if (n <= 35) return '🚍';
+    return '🚌';
+  }
+
+  /* 0. Top Header 2.5px Scroll-Progress Hairline */
+  var progressRail = document.getElementById('b-scroll-progress');
+  if (progressRail) {
+    var ticking = false;
+    var syncScrollProgress = function () {
+      var docH = document.documentElement.scrollHeight - window.innerHeight;
+      var ratio = docH > 40 ? Math.min(1, Math.max(0, window.scrollY / docH)) : 0;
+      progressRail.style.transform = 'scaleX(' + ratio.toFixed(4) + ')';
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(syncScrollProgress);
+      }
+    }, { passive: true });
+    syncScrollProgress();
+  }
+
+  /* 1. Horizontal Touch-Snap Fleet Rail: 01 / 06 Counter + Arrows + Synced Dots */
   var snapRail = document.getElementById('fleet-snap-rail');
-  document.querySelectorAll('[data-rail-dir]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      if (!snapRail) return;
-      var dir = parseInt(btn.getAttribute('data-rail-dir'), 10) || 1;
-      var card = snapRail.querySelector('.tier-snap-card');
-      var step = card ? card.getBoundingClientRect().width + 16 : 300;
-      snapRail.scrollBy({ left: dir * step, behavior: 'smooth' });
+  var railCounter = document.getElementById('b-rail-counter');
+  var railDotsWrap = document.getElementById('b-rail-dots');
+
+  if (snapRail) {
+    var snapCards = Array.prototype.slice.call(snapRail.querySelectorAll('.tier-snap-card'));
+    var totalCards = snapCards.length;
+    var dotButtons = [];
+
+    function padTwo(num) {
+      return String(num).padStart(2, '0');
+    }
+
+    if (railDotsWrap && totalCards > 0) {
+      snapCards.forEach(function (_, idx) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'rail-dot' + (idx === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Scroll to fleet card ' + (idx + 1) + ' of ' + totalCards);
+        dot.addEventListener('click', function () {
+          var targetCard = snapCards[idx];
+          if (targetCard) {
+            snapRail.scrollTo({
+              left: targetCard.offsetLeft - snapRail.offsetLeft,
+              behavior: 'smooth'
+            });
+          }
+        });
+        railDotsWrap.appendChild(dot);
+        dotButtons.push(dot);
+      });
+    }
+
+    function updateSnapIndicators() {
+      if (!totalCards) return;
+      var railRect = snapRail.getBoundingClientRect();
+      var bestIdx = 0;
+      var bestDist = Infinity;
+
+      var maxScroll = snapRail.scrollWidth - snapRail.clientWidth;
+      if (maxScroll > 10 && snapRail.scrollLeft >= maxScroll - 8) {
+        bestIdx = totalCards - 1;
+      } else {
+        snapCards.forEach(function (card, idx) {
+          var dist = Math.abs(card.getBoundingClientRect().left - railRect.left);
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestIdx = idx;
+          }
+        });
+      }
+
+      if (railCounter) {
+        railCounter.textContent = padTwo(bestIdx + 1) + ' / ' + padTwo(totalCards);
+      }
+      dotButtons.forEach(function (d, idx) {
+        d.classList.toggle('is-active', idx === bestIdx);
+      });
+    }
+
+    var railTicking = false;
+    snapRail.addEventListener('scroll', function () {
+      if (!railTicking) {
+        railTicking = true;
+        window.requestAnimationFrame(function () {
+          updateSnapIndicators();
+          railTicking = false;
+        });
+      }
+    }, { passive: true });
+
+    document.querySelectorAll('[data-rail-dir]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var dir = parseInt(btn.getAttribute('data-rail-dir'), 10) || 1;
+        var card = snapCards[0];
+        var step = card ? card.getBoundingClientRect().width + 16 : 300;
+        snapRail.scrollBy({ left: dir * step, behavior: 'smooth' });
+      });
     });
-  });
+
+    updateSnapIndicators();
+  }
+
+  /* 1B. Native <dialog> Photo Lightbox */
+  var lightbox = document.getElementById('b-photo-lightbox');
+  if (lightbox) {
+    var lbImg = document.getElementById('b-lightbox-img');
+    var lbCap = document.getElementById('b-lightbox-caption');
+    var lbClose = document.getElementById('b-lightbox-close');
+    var lbCta = document.getElementById('b-lightbox-cta');
+    var lastTrigger = null;
+
+    function openLightbox(triggerEl) {
+      var src = triggerEl.getAttribute('data-lightbox-src');
+      if (!src) return;
+      lastTrigger = triggerEl;
+      var innerImg = triggerEl.querySelector('img');
+      var cap = triggerEl.getAttribute('data-lightbox-caption') || (innerImg ? innerImg.alt : '');
+
+      if (lbImg) {
+        lbImg.src = src;
+        lbImg.alt = innerImg ? innerImg.alt : cap;
+      }
+      if (lbCap) lbCap.textContent = cap;
+
+      if (typeof lightbox.showModal === 'function') {
+        if (!lightbox.open) lightbox.showModal();
+      } else {
+        lightbox.setAttribute('open', '');
+      }
+    }
+
+    function closeLightbox(restoreFocus) {
+      if (typeof lightbox.close === 'function' && lightbox.open) {
+        lightbox.close();
+      } else {
+        lightbox.removeAttribute('open');
+      }
+      if (restoreFocus && lastTrigger && typeof lastTrigger.focus === 'function') {
+        lastTrigger.focus();
+      }
+    }
+
+    document.querySelectorAll('[data-lightbox-src]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        if (e.target.closest('a, button')) return;
+        openLightbox(el);
+      });
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(el);
+        }
+      });
+    });
+
+    if (lbClose) {
+      lbClose.addEventListener('click', function () { closeLightbox(true); });
+    }
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox(true);
+    });
+
+    if (lbCta) {
+      lbCta.addEventListener('click', function () {
+        closeLightbox(false);
+      });
+    }
+  }
+
+  /* 1C. Frosted Floating Dock Smart Form/Footer Auto-Clearance */
+  var floatingDock = document.querySelector('.floating-dock');
+  var dockWatchTargets = [
+    document.getElementById('b-quote-form'),
+    document.querySelector('.telemetry-footer')
+  ].filter(Boolean);
+
+  if (floatingDock && dockWatchTargets.length && 'IntersectionObserver' in window) {
+    var intersectingList = [];
+    var dockObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var idx = intersectingList.indexOf(entry.target);
+        if (entry.isIntersecting && idx === -1) {
+          intersectingList.push(entry.target);
+        } else if (!entry.isIntersecting && idx !== -1) {
+          intersectingList.splice(idx, 1);
+        }
+      });
+      floatingDock.classList.toggle('is-dock-hidden', intersectingList.length > 0);
+    }, { threshold: 0.01 });
+
+    dockWatchTargets.forEach(function (el) { dockObs.observe(el); });
+  }
 
   /* 2. Interactive 7–70 Seat Thumb-Slider Matcher */
   var slider = document.getElementById('b-pax-slider');
@@ -70,11 +365,11 @@
 
     if (!quoteLiveChip) return;
     if (svc === 'External Transport Manager') {
-      quoteLiveChip.textContent = 'DVSA External Transport Manager';
+      quoteLiveChip.textContent = '🛡️ DVSA External Transport Manager';
     } else if (svc === 'PSV Driver Cover (B2B)') {
-      quoteLiveChip.textContent = 'PSV Driver Cover · ' + getTierLabel(formPax);
+      quoteLiveChip.textContent = '🪪 PSV Driver Cover · ' + getTierLabel(formPax);
     } else {
-      quoteLiveChip.textContent = 'Matched: ' + formPax + ' Seats · ' + spec;
+      quoteLiveChip.textContent = getTierIcon(formPax) + ' ' + getTierLabel(formPax) + ' · ' + spec;
     }
   }
 
@@ -113,46 +408,15 @@
     });
   });
 
-  var applyBtn = document.getElementById('b-apply-to-quote');
-  if (applyBtn) {
-    applyBtn.addEventListener('click', function () {
-      if (paxFormInput && slider) paxFormInput.value = slider.value;
-      if (cabinSelect) cabinSelect.value = activeSpec;
-      var hireRadio = document.getElementById('b-svc-hire');
-      if (hireRadio) hireRadio.checked = true;
-      syncFormVisibility();
-      updateQuoteChip();
-      var quoteSec = document.getElementById('telemetry-quote');
-      if (quoteSec) quoteSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  }
-
-  /* Quick Load Buttons on Fleet Snap Cards */
-  document.querySelectorAll('[data-load-quote]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var mode = btn.getAttribute('data-load-quote');
-      var pax = btn.getAttribute('data-pax') || '16';
-      if (slider) {
-        slider.value = pax;
-        updateMatcherUI();
-      }
-      if (paxFormInput) paxFormInput.value = pax;
-      var radioId = mode === 'driver' ? 'b-svc-driver' : mode === 'tm' ? 'b-svc-tm' : 'b-svc-hire';
-      var r = document.getElementById(radioId);
-      if (r) r.checked = true;
-      syncFormVisibility();
-      updateQuoteChip();
-      var quoteSec = document.getElementById('telemetry-quote');
-      if (quoteSec) quoteSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  /* 3. Dynamic Journey / Return Visibility & Synced 1-Tap Date Chips */
+  /* 3. Dynamic Journey / Return Visibility, Synced Date Chips & 1-Tap Dispatch Presets */
   var journeyBlock = document.getElementById('b-journey-fields');
   var tripSelect = document.getElementById('b-trip-type');
   var returnWrap = document.getElementById('b-return-wrap');
   var outDate = document.getElementById('b-outbound-date');
   var retDate = document.getElementById('b-return-date');
+  var pickupInput = document.getElementById('b-pickup');
+  var dropoffInput = document.getElementById('b-dropoff');
+  var notesInput = document.getElementById('b-notes');
 
   function syncFormVisibility() {
     var checkedSvc = document.querySelector('input[name="service_type"]:checked');
@@ -177,16 +441,109 @@
 
   var today = new Date();
   var todayIso = toIso(today);
+  var tmrw = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+  var tmrwIso = toIso(tmrw);
+
+  [outDate, retDate, pickupInput, dropoffInput, notesInput].forEach(function (el) {
+    if (!el) return;
+    el.addEventListener('input', function () {
+      el.removeAttribute('data-preset-filled');
+    });
+  });
+
+  function setPresetField(el, val) {
+    if (!el) return;
+    if (!el.value || el.getAttribute('data-preset-filled') === 'true') {
+      el.value = val;
+      el.setAttribute('data-preset-filled', 'true');
+      el.setAttribute('aria-invalid', 'false');
+      var err = document.getElementById(el.id + '-error');
+      if (err) err.textContent = '';
+    }
+  }
+
+  document.querySelectorAll('[data-b-preset]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var key = btn.getAttribute('data-b-preset');
+      var p = DISPATCH_PRESETS[key];
+      if (!p) return;
+
+      var r = document.getElementById(p.radioId);
+      if (r) r.checked = true;
+      if (paxFormInput) paxFormInput.value = String(p.pax);
+      if (cabinSelect) cabinSelect.value = p.spec;
+      if (tripSelect) tripSelect.value = p.trip;
+      if (slider) {
+        slider.value = String(p.pax);
+        activeSpec = p.spec;
+        cabinBtns.forEach(function (cb) {
+          var sel = cb.getAttribute('data-cabin-spec') === p.spec;
+          cb.classList.toggle('is-selected', sel);
+          cb.setAttribute('aria-pressed', String(sel));
+        });
+        updateMatcherUI();
+      }
+
+      setPresetField(outDate, tmrwIso);
+      setPresetField(retDate, tmrwIso);
+      setPresetField(pickupInput, p.pickup);
+      setPresetField(dropoffInput, p.dropoff);
+      setPresetField(notesInput, p.notes);
+
+      document.querySelectorAll('[data-b-preset]').forEach(function (other) {
+        other.classList.toggle('is-active', other === btn);
+      });
+
+      syncFormVisibility();
+      updateQuoteChip();
+      showToast('✓ Loaded: ' + p.label);
+    });
+  });
+
+  var applyBtn = document.getElementById('b-apply-to-quote');
+  if (applyBtn) {
+    applyBtn.addEventListener('click', function () {
+      if (paxFormInput && slider) paxFormInput.value = slider.value;
+      if (cabinSelect) cabinSelect.value = activeSpec;
+      var hireRadio = document.getElementById('b-svc-hire');
+      if (hireRadio) hireRadio.checked = true;
+      syncFormVisibility();
+      updateQuoteChip();
+      showToast('✓ Matched ' + (slider ? slider.value : '16') + ' seats (' + activeSpec + ') loaded');
+      var quoteSec = document.getElementById('telemetry-quote');
+      if (quoteSec) quoteSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  /* Quick Load Buttons on Fleet Snap Cards */
+  document.querySelectorAll('[data-load-quote]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var mode = btn.getAttribute('data-load-quote');
+      var pax = btn.getAttribute('data-pax') || '16';
+      if (slider) {
+        slider.value = pax;
+        updateMatcherUI();
+      }
+      if (paxFormInput) paxFormInput.value = pax;
+      var radioId = mode === 'driver' ? 'b-svc-driver' : mode === 'tm' ? 'b-svc-tm' : 'b-svc-hire';
+      var r = document.getElementById(radioId);
+      if (r) r.checked = true;
+      syncFormVisibility();
+      updateQuoteChip();
+      showToast('✓ Selected division loaded into quote console');
+      var quoteSec = document.getElementById('telemetry-quote');
+      if (quoteSec) quoteSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   if (outDate) {
     outDate.min = todayIso;
     var outChips = document.getElementById('b-outbound-chips');
     if (outChips) {
-      var tmrw = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
       var fri = today.getDay() === 5 ? today : nextDow(today, 5);
       var sat = today.getDay() === 6 ? today : nextDow(today, 6);
       [
-        { label: 'Tomorrow', iso: toIso(tmrw) },
+        { label: 'Tomorrow', iso: tmrwIso },
         { label: today.getDay() === 5 ? 'Today (Fri)' : 'This Friday', iso: toIso(fri) },
         { label: today.getDay() === 6 ? 'Today (Sat)' : 'This Saturday', iso: toIso(sat) }
       ].forEach(function (p) {
@@ -196,6 +553,7 @@
         c.textContent = p.label;
         c.addEventListener('click', function () {
           outDate.value = p.iso;
+          outDate.removeAttribute('data-preset-filled');
           outChips.querySelectorAll('.t-chip').forEach(function (x) { x.classList.remove('is-selected'); });
           c.classList.add('is-selected');
           outDate.dispatchEvent(new Event('change', { bubbles: true }));
@@ -228,6 +586,7 @@
         c.textContent = p.label;
         c.addEventListener('click', function () {
           retDate.value = p.calc();
+          retDate.removeAttribute('data-preset-filled');
           retChips.querySelectorAll('.t-chip').forEach(function (x) { x.classList.remove('is-selected'); });
           c.classList.add('is-selected');
           retDate.dispatchEvent(new Event('input', { bubbles: true }));
@@ -252,7 +611,7 @@
   syncFormVisibility();
   updateQuoteChip();
 
-  /* 4. Form Validation & Exact Demo Submission Message */
+  /* 4. Form Validation & Live Owner-Receipt Digital Enquiry Ticket */
   var form = document.getElementById('b-quote-form');
   var feedback = document.getElementById('b-quote-feedback');
 
@@ -329,13 +688,93 @@
         return;
       }
 
+      var checkedSvc = form.querySelector('input[name="service_type"]:checked');
+      var svc = checkedSvc ? checkedSvc.value : 'Minibus / Coach Charter';
+      var isTM = svc === 'External Transport Manager';
+      var paxVal = paxFormInput ? paxFormInput.value : '16';
+      var specVal = cabinSelect ? cabinSelect.value : 'Executive';
+      var tripVal = tripSelect ? tripSelect.value : 'Return Journey';
+      var tierStr = getTierLabel(paxVal);
+      var cName = (document.getElementById('b-contact-name').value || '').trim();
+      var cPhone = (document.getElementById('b-contact-phone').value || '').trim();
+      var cEmail = (document.getElementById('b-contact-email').value || '').trim();
+
+      var svcSummary = isTM
+        ? 'External Transport Manager (DVSA / O-Licence)'
+        : svc + ' · ' + paxVal + ' Seats (' + tierStr + ', ' + specVal + ')';
+
+      var routeSummary = 'O-Licence & DVSA Compliance Scope';
+      if (!isTM) {
+        var oStr = outDate ? outDate.value : '';
+        var rStr = tripVal === 'Return Journey' ? ' | Return: ' + (retDate ? retDate.value : '') : ' (One-Way)';
+        var pStr = pickupInput ? pickupInput.value.trim() : '';
+        var dStr = dropoffInput ? dropoffInput.value.trim() : '';
+        routeSummary = pStr + ' → ' + dStr + ' · Outbound: ' + oStr + rStr;
+      }
+
+      var notesVal = notesInput && notesInput.value.trim() ? notesInput.value.trim() : 'None specified';
+      var refCode = 'JMH-' + String(Math.floor(1000 + Math.random() * 9000));
+
+      var plainSummary = [
+        'JMH Travel Solutions Ltd — Telemetry Enquiry (' + refCode + ')',
+        'Client / Operator: ' + cName,
+        'Contact: ' + cPhone + ' | ' + cEmail,
+        'Service & Tier: ' + svcSummary,
+        'Dates & Route: ' + routeSummary,
+        'Notes: ' + notesVal
+      ].join('\n');
+
       if (feedback) {
         feedback.hidden = false;
         feedback.className = 'form-feedback is-success';
-        feedback.textContent = 'Demo only – in the live site this would go straight to JMH Travel Solutions Ltd.';
+        feedback.innerHTML =
+          '<p class="b-demo-verbatim">Demo only – in the live site this would go straight to JMH Travel Solutions Ltd.</p>' +
+          '<div class="b-receipt-ticket">' +
+            '<div class="b-receipt-head">' +
+              '<span class="b-receipt-title">What JMH Travel Solutions Ltd Receives</span>' +
+              '<span class="b-receipt-ref">Ref: ' + escapeHtml(refCode) + '</span>' +
+            '</div>' +
+            '<dl class="b-receipt-dl">' +
+              '<div><dt>Client / Operator</dt><dd>' + escapeHtml(cName) + '</dd></div>' +
+              '<div><dt>Phone &amp; Email</dt><dd>' + escapeHtml(cPhone + ' · ' + cEmail) + '</dd></div>' +
+              '<div class="full-span"><dt>Service &amp; Seat Tier</dt><dd>' + escapeHtml(svcSummary) + '</dd></div>' +
+              '<div class="full-span"><dt>Outbound / Return Dates &amp; Route</dt><dd>' + escapeHtml(routeSummary) + '</dd></div>' +
+              '<div class="full-span"><dt>Notes</dt><dd>' + escapeHtml(notesVal) + '</dd></div>' +
+            '</dl>' +
+            '<div class="b-receipt-actions">' +
+              '<button type="button" class="btn btn-emerald-solid btn-sm" id="b-copy-receipt">Copy Summary</button>' +
+              '<button type="button" class="btn btn-ghost-light btn-sm" id="b-reset-demo">Reset Demo</button>' +
+            '</div>' +
+          '</div>';
+
+        var copyBtn = document.getElementById('b-copy-receipt');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', function () {
+            copyTextToClipboard(plainSummary, function () {
+              copyBtn.textContent = '✓ Summary Copied';
+              showToast('✓ Dispatch summary copied to clipboard');
+            });
+          });
+        }
+
+        var resetBtn = document.getElementById('b-reset-demo');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function () {
+            form.reset();
+            reqFields.forEach(function (el) { setError(el, ''); });
+            document.querySelectorAll('[data-b-preset]').forEach(function (b) { b.classList.remove('is-active'); });
+            document.querySelectorAll('.t-chip').forEach(function (c) { c.classList.remove('is-selected'); });
+            feedback.hidden = true;
+            feedback.innerHTML = '';
+            syncFormVisibility();
+            updateQuoteChip();
+            showToast('Demo form reset');
+          });
+        }
+
         feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        showToast('✓ Demo enquiry ticket generated (' + refCode + ')');
       }
     });
   }
 })();
-

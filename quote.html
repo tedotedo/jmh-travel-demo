@@ -126,9 +126,31 @@
           </div>
 
           <h2 style="margin-bottom: 0.35rem;">Trip &amp; Operator Enquiry Details</h2>
-          <p class="field-hint" style="margin-bottom: 1.5rem;">
+          <p class="field-hint" style="margin-bottom: 1.1rem;">
             Fields marked <span class="req-star" aria-hidden="true">*</span> are required for accurate pricing.
           </p>
+
+          <!-- 1-Tap Dispatch Presets + Live Visual Cabin Tier Badge -->
+          <div class="dispatch-presets-bar" role="region" aria-label="1-Tap Dispatch Presets">
+            <div class="presets-header-row">
+              <span class="presets-kicker">1-Tap Dispatch Presets</span>
+              <span class="cabin-tier-visual-badge" id="quote-cabin-badge" aria-live="polite">🚐 16-Seater Minibus · Executive</span>
+            </div>
+            <div class="dispatch-presets-grid" role="group" aria-label="Quick dispatch scenario presets">
+              <button type="button" class="dispatch-preset-pill" data-dispatch-preset="airport8">
+                ✈️ 8-Seat Executive Airport Return
+              </button>
+              <button type="button" class="dispatch-preset-pill" data-dispatch-preset="group16">
+                🏟️ 16-Seat Group Match/Race Day
+              </button>
+              <button type="button" class="dispatch-preset-pill" data-dispatch-preset="coach53">
+                🚌 53-Seat Corporate/School Coach
+              </button>
+              <button type="button" class="dispatch-preset-pill" data-dispatch-preset="psvdriver">
+                🪪 Trade PSV Relief Driver Cover
+              </button>
+            </div>
+          </div>
 
           <form id="quote-form" novalidate>
             <!-- 1. Enquiry Type -->
@@ -368,7 +390,17 @@
             </p>
           </div>
 
-          <figure class="fleet-figure" style="margin-top: 1.4rem; background-color: var(--surface);">
+          <figure
+            class="fleet-figure"
+            style="margin-top: 1.4rem; background-color: var(--surface);"
+            data-lightbox-src="images/hero.jpg"
+            data-lightbox-caption="7-seater to 70-seater Standard &amp; Executive passenger fleet · Eaglescliffe, Stockton-on-Tees &amp; North East"
+            data-lightbox-cta="#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge charter fleet photograph"
+          >
+            <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
             <img
               src="images/hero.jpg"
               width="1440"
@@ -378,6 +410,30 @@
             >
             <figcaption>
               <span>7-seater to 70-seater Standard &amp; Executive fleet</span>
+              <span class="illustrative-tag">Illustrative image</span>
+            </figcaption>
+          </figure>
+
+          <figure
+            class="fleet-figure"
+            style="margin-top: 1rem; background-color: var(--surface);"
+            data-lightbox-src="images/detail-2.jpg"
+            data-lightbox-caption="Stitched dark leather reclining executive cabin seating with panoramic countryside views"
+            data-lightbox-cta="#quote-form"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge executive cabin photograph"
+          >
+            <span class="lightbox-zoom-hint" aria-hidden="true">⤢ Enlarge</span>
+            <img
+              src="images/detail-2.jpg"
+              width="1200"
+              height="896"
+              alt="Luxury dark stitched leather reclining executive cabin interior with panoramic countryside views"
+              loading="lazy"
+            >
+            <figcaption>
+              <span>Executive stitched leather cabin interior</span>
               <span class="illustrative-tag">Illustrative image</span>
             </figcaption>
           </figure>
@@ -422,6 +478,26 @@
     <a class="btn btn-outline-light" href="tel:01642058430">Call 01642 058430</a>
     <a class="btn btn-amber" href="#quote-form">Complete Quote</a>
   </div>
+
+  <!-- Non-blocking Micro-Toast -->
+  <div id="micro-toast" class="micro-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <!-- Native Accessible Photo Lightbox -->
+  <dialog class="photo-lightbox" id="photo-lightbox" aria-labelledby="lightbox-caption">
+    <div class="lightbox-shell">
+      <div class="lightbox-topbar">
+        <span class="illustrative-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close-btn" id="lightbox-close" aria-label="Close photo preview">✕ Close</button>
+      </div>
+      <div class="lightbox-media-stage">
+        <img id="lightbox-img" src="images/hero.jpg" alt="">
+      </div>
+      <div class="lightbox-footer">
+        <p id="lightbox-caption">JMH Travel Solutions Ltd — 7 to 70 passenger seat fleet</p>
+        <a class="btn btn-amber btn-sm" id="lightbox-cta" href="#quote-form">Continue to Quote Form →</a>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/main.js"></script>
 </body>

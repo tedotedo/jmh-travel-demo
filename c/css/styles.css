@@ -3,6 +3,10 @@
    Self-hosted WOFF2 fonts · Mobile-First 344px–1440px · WCAG AA+ Compliant
    ========================================================================== */
 
+@view-transition {
+  navigation: auto;
+}
+
 @font-face {
   font-family: 'Archivo';
   src: url('../../fonts/archivo-latin.woff2') format('woff2');
@@ -133,15 +137,15 @@ h1, h2, h3 {
 }
 
 /* ==========================================================================
-   1. Top Concept Banner & Switcher
+   1. Top Concept Banner & Switcher (Compact <= 84px at 390px, >= 40px pills)
    ========================================================================== */
 .concept-banner {
   background-color: var(--slate);
   color: #FFFFFF;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 0.74rem;
+  line-height: 1.25;
   font-weight: 600;
-  padding: 0.45rem 0.75rem;
+  padding: 0.3rem 0.65rem;
   border-bottom: 2px solid var(--amber-bright);
 }
 
@@ -149,39 +153,53 @@ h1, h2, h3 {
   max-width: var(--container-max);
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem 0.75rem;
-  text-align: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  text-align: left;
 }
 
 .concept-banner p {
   margin: 0;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .concept-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.24rem;
   flex-shrink: 0;
 }
 
 .concept-switcher-label {
-  font-size: 0.73rem;
+  display: none;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: #CBD5E1;
 }
 
+@media (min-width: 560px) {
+  .concept-banner {
+    font-size: 0.8rem;
+    line-height: 1.35;
+    padding: 0.38rem 0.85rem;
+  }
+  .concept-switcher-label {
+    display: inline;
+  }
+}
+
 .concept-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 42px;
-  min-height: 42px;
-  padding: 0 0.6rem;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0 0.5rem;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
@@ -203,15 +221,29 @@ h1, h2, h3 {
 }
 
 /* ==========================================================================
-   2. Precision Swiss Header + Sticky Pill-Tab Bar
+   2. Precision Swiss Header + Scroll-Progress Hairline + Sticky Pill-Tab Bar
    ========================================================================== */
 .swiss-header {
   position: sticky;
   top: 0;
   z-index: 120;
   background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
+}
+
+.scroll-progress-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--emerald) 0%, var(--amber-bright) 100%);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+  z-index: 125;
 }
 
 .swiss-brand-bar {
@@ -415,18 +447,24 @@ h1, h2, h3 {
 }
 
 /* ==========================================================================
-   3. Daylight Hero + Crisp 2x2 Bento Summary
+   3. Daylight Hero + Crisp 2x2 Bento Summary (Mobile Fold Hero Visual First)
    ========================================================================== */
 .swiss-hero {
-  padding: 1.2rem 0 2rem;
+  padding: 0.95rem 0 1.85rem;
 }
 
 .hero-swiss-grid {
   display: grid;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
-@media (min-width: 940px) {
+@media (max-width: 959px) {
+  .hero-swiss-grid > .swiss-photo-card {
+    order: -1;
+  }
+}
+
+@media (min-width: 960px) {
   .swiss-hero {
     padding: 1.9rem 0 2.5rem;
   }
@@ -434,6 +472,9 @@ h1, h2, h3 {
     grid-template-columns: 1.08fr 0.92fr;
     align-items: stretch;
     gap: 1.75rem;
+  }
+  .hero-swiss-grid > .swiss-photo-card {
+    order: 0;
   }
 }
 
@@ -537,6 +578,30 @@ h1, h2, h3 {
   gap: 0.6rem;
 }
 
+[data-lightbox-src] {
+  position: relative;
+  cursor: zoom-in;
+}
+
+.c-zoom-badge {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
+  padding: 0.24rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.84);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
 .swiss-photo-card {
   margin: 0;
   border-radius: var(--radius-lg);
@@ -545,6 +610,7 @@ h1, h2, h3 {
   background: var(--white);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
 }
 
 .swiss-photo-card img {
@@ -552,6 +618,11 @@ h1, h2, h3 {
   flex: 1;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.swiss-photo-card:hover img {
+  transform: scale(1.02);
 }
 
 .swiss-caption {
@@ -825,11 +896,47 @@ h1, h2, h3 {
   background: var(--daylight);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 1.15rem;
+  padding: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.65rem;
+}
+
+.swiss-card-photo {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--slate);
+  border-bottom: 1px solid var(--border);
+}
+
+.swiss-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.swiss-card-photo:hover img {
+  transform: scale(1.03);
+}
+
+.card-ill-badge {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.32);
+}
+
+.swiss-card-body {
+  padding: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex: 1;
 }
 
 .tier-head-bar {
@@ -942,6 +1049,115 @@ h1, h2, h3 {
 .stepper-top-bar p {
   margin: 0;
   color: var(--slate-muted);
+}
+
+/* 1-Tap Dispatch Presets + Live Visual Cabin Tier Badge */
+.c-presets-bar {
+  background: var(--daylight);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.c-presets-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.c-presets-label {
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate);
+}
+
+.c-cabin-visual-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: var(--slate);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.c-cabin-visual-badge.is-standard {
+  background: var(--emerald-tint);
+  color: var(--emerald-dark);
+  border: 1px solid #A7DEC9;
+}
+
+.c-cabin-visual-badge.is-b2b {
+  background: var(--amber-tint);
+  color: var(--slate);
+  border: 1px solid #F1CF85;
+}
+
+.c-cabin-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber-bright);
+  flex-shrink: 0;
+}
+
+.c-cabin-visual-badge.is-standard .c-cabin-dot {
+  background: var(--emerald);
+}
+
+.c-cabin-visual-badge.is-b2b .c-cabin-dot {
+  background: var(--slate);
+}
+
+.c-presets-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+@media (min-width: 640px) {
+  .c-presets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.c-preset-pill {
+  min-height: 42px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: #FFFFFF;
+  color: var(--slate);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.c-preset-pill:hover {
+  border-color: var(--emerald);
+  background: var(--emerald-tint);
+}
+
+.c-preset-pill.is-active {
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: #FFFFFF;
 }
 
 .swiss-steps-bar {
@@ -1335,17 +1551,29 @@ h1, h2, h3 {
 
 .swiss-mobile-bar {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
   z-index: 150;
-  background: #FFFFFF;
-  border-top: 2px solid var(--slate);
-  padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid rgba(15, 23, 42, 0.18);
+  border-radius: 999px;
+  padding: 0.42rem 0.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.08);
+  gap: 0.45rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    0 14px 34px rgba(15, 23, 42, 0.18);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+}
+
+.swiss-mobile-bar.is-dock-hidden {
+  transform: translateY(130%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (min-width: 980px) {
@@ -1358,5 +1586,232 @@ h1, h2, h3 {
   padding: 0.55rem 0.5rem;
   font-size: 0.82rem;
   white-space: nowrap;
+}
+
+/* ==========================================================================
+   8. Live Digital Enquiry Ticket, Micro-Toast & Accessible Photo Lightbox
+   ========================================================================== */
+.c-demo-notice-banner {
+  margin: 0 0 0.85rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 8px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--emerald);
+  color: #064E3B;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.c-receipt-ticket {
+  background: #FFFFFF;
+  border: 1.5px solid var(--slate);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  color: var(--slate);
+  font-weight: 500;
+}
+
+.c-receipt-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  padding-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.c-receipt-head strong {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--slate);
+}
+
+.c-receipt-ref {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--slate);
+  color: var(--amber-bright);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.c-receipt-dl {
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+@media (min-width: 640px) {
+  .c-receipt-dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.c-receipt-row {
+  background: var(--daylight);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+}
+
+.c-receipt-row.is-wide {
+  grid-column: 1 / -1;
+}
+
+.c-receipt-row dt {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slate-muted);
+  margin-bottom: 0.15rem;
+}
+
+.c-receipt-row dd {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--slate);
+  word-break: break-word;
+}
+
+.c-receipt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Micro-Toast Pill */
+.c-micro-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(4.9rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 220;
+  max-width: min(92vw, 440px);
+  padding: 0.58rem 1rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.96);
+  color: #FFFFFF;
+  border: 1px solid rgba(245, 174, 36, 0.55);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.28);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+}
+
+@media (min-width: 980px) {
+  .c-micro-toast {
+    bottom: 1.5rem;
+  }
+}
+
+/* Accessible Native <dialog> Photo Lightbox */
+dialog.photo-lightbox {
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.24);
+  border-radius: var(--radius-lg);
+  background: var(--slate);
+  color: #FFFFFF;
+  width: min(94vw, 880px);
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 28px 64px rgba(15, 23, 42, 0.55);
+}
+
+dialog.photo-lightbox::backdrop {
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lightbox-surface {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.lightbox-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.65rem 0.95rem;
+  background: rgba(15, 23, 42, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.lightbox-close-btn {
+  min-height: 42px;
+  min-width: 42px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.lightbox-close-btn:hover {
+  background: var(--amber-bright);
+  border-color: var(--amber-bright);
+  color: var(--slate);
+}
+
+.lightbox-media-wrap {
+  background: #050B14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lightbox-media-wrap img {
+  width: 100%;
+  max-height: 62vh;
+  object-fit: contain;
+}
+
+.lightbox-footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  background: var(--slate);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.lightbox-caption {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #E2E8F0;
+  flex: 1 1 220px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
