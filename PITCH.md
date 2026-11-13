@@ -51,3 +51,23 @@ Before removing the concept banner and deploying to `jmhtravelsolutions.co.uk`:
 - [ ] **Exact Fleet Specs & Real Vehicle Photos:** Replace `[Exact vehicle specs & photos – owner to confirm]` and swap the AI-generated illustrative photos (`images/hero.jpg`, `images/feature.jpg`) with real photos of JMH’s minibuses and coaches.
 - [ ] **Operator Licence / CPC Credentials:** Confirm any O-licence or Transport Manager accreditation wording (`[Operator licence & CPC details – owner to confirm]`).
 - [ ] **Location Privacy Check:** Confirm the owner wishes to keep public location display strictly area-based (`Eaglescliffe, Stockton-on-Tees & North East`) with zero residential street/postcode exposure.
+
+---
+
+## Set D — Where Are You Going? (`/d/`)
+
+- **Live Concept URL:** https://tedotedo.github.io/jmh-travel-demo/d/
+- **What it is:** Journey first, fleet second, in British road-sign styling: pick the trip type, set the group size and the right vehicle is chosen for you.
+- **Reach it from any page:** tap **D** in the Concept switcher in the top banner.
+
+### 3-Tap Phone Demo (Set D)
+1. Tap **Race day**: the blue sign lists York, Thirsk, Redcar, Catterick and Ripon.
+2. Drag the passenger slider from 28 to 52: the vehicle changes to a 49–70 seater coach and the seat plan fills.
+3. Scroll to **Get a quote**: journey type, passengers and vehicle are already filled in.
+
+### One-Line Pitch
+> *"Customers don't know they need a midi-coach. They know they've got 28 people going to York races."*
+
+### Know Before You Show
+- Destinations are real places used as examples, not confirmed routes, and every price is a placeholder. Location is shown as area only.
+- Demo only: no form sends anything, and unknown details stay as bracketed `[...]` placeholders for the owner to confirm.

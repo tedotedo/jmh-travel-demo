@@ -45,3 +45,9 @@ Open `index.html` directly in any modern browser, or serve the folder over a loc
 ```bash
 python3 -m http.server 8081
 ```
+
+## Set D — Where Are You Going?
+
+- `d/index.html`, `d/css/styles.css`, `d/js/app.js` — Journey first, fleet second, in British road-sign styling: pick the trip type, set the group size and the right vehicle is chosen for you.
+- Live at https://tedotedo.github.io/jmh-travel-demo/d/. Reuses the root `fonts/` and `images/`; same `noindex`, zero external requests and `.ph` placeholder rules as Sets A–C.
+- Destinations are real places used as examples, not confirmed routes, and every price is a placeholder. Location is shown as area only.
