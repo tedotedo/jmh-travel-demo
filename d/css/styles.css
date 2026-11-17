@@ -259,3 +259,29 @@ button { cursor: pointer; }
   .quote__grid { grid-template-columns: 1fr 1.2fr; gap: 3.5rem; }
   .trade__grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* Boarding pass */
+.pass { grid-column: 1 / -1; max-width: 26rem; width: 100%; justify-self: center; margin-top: 1.5rem; background: #fff; color: var(--ink); border-radius: 14px; box-shadow: 0 18px 40px -18px rgba(16,35,27,.45), 0 0 0 1px var(--rule); overflow: hidden; transform-origin: top center; }
+.pass.is-printed { animation: pass-print .9s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes pass-print { from { opacity: 0; transform: translateY(-24px) scaleY(.6); clip-path: inset(0 0 100% 0); } to { opacity: 1; transform: none; clip-path: inset(0 0 0 0); } }
+.pass__top { display: flex; justify-content: space-between; align-items: center; background: var(--green); color: #fff; padding: .7rem 1.1rem; }
+.pass__co { font-family: var(--font-display); font-weight: 900; font-size: 1.05rem; }
+.pass__kind { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: var(--hi); color: var(--hi-ink); padding: .2rem .5rem; border-radius: 4px; }
+.pass__route { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1.25fr); align-items: end; gap: .6rem; padding: 1rem 1.1rem .6rem; }
+.pass__route svg { width: 2.6rem; color: var(--blue); margin-bottom: .3rem; }
+.pass__route b { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(1rem, 4.6vw, 1.25rem); line-height: 1.1; overflow-wrap: break-word; }
+.pass__to { text-align: right; }
+.pass__k, .pass__grid dt { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.pass__grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 1rem; margin: 0; padding: .4rem 1.1rem 1rem; }
+.pass__grid dd { margin: .1rem 0 0; font-weight: 700; font-size: 1rem; }
+.pass__wide { grid-column: 1 / -1; }
+.pass__tear { position: relative; height: 0; border-top: 2px dashed var(--rule); margin: 0 1.1rem; }
+.pass__tear::before, .pass__tear::after { content: ''; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--paper); }
+.pass__tear::before { left: calc(-1.1rem - 11px); } .pass__tear::after { right: calc(-1.1rem - 11px); }
+.pass__foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.1rem .5rem; }
+.pass__foot b { display: block; font-weight: 800; }
+.pass__ref { display: block; font-size: .8rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.pass__bars { display: flex; gap: 2px; height: 2.6rem; align-items: stretch; }
+.pass__bars i { background: var(--ink); }
+.pass__fine { margin: 0; padding: 0 1.1rem .9rem; font-size: .75rem; color: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) { .pass.is-printed { animation: none; } }

@@ -108,7 +108,37 @@
     var d = new Date(f.date.value + 'T12:00:00');
     done.textContent = trip.name + ' for ' + pax + ' on ' + d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) +
       (f.ret.checked ? ', return' : ', one way') + ' · ' + tierFor(pax).name + '. Demo only, nothing has been sent.';
+    printPass(f, d);
   });
+
+  /* Boarding pass: the quote request printed as a coach ticket */
+  function printPass(f, d) {
+    var pass = document.querySelector('[data-pass]');
+    var ref = 'JMH-' + (1000 + Math.floor(Math.random() * 9000));
+    var from = f.from.value.trim() || 'Your door';
+    var to = trip.id === 'airport' ? 'Teesside Airport' : trip.list[0];
+    var bars = '';
+    for (var i = 0; i < 46; i++) bars += '<i style="width:' + (1 + (i * 7 + ref.charCodeAt(4 + i % 4)) % 4) + 'px"></i>';
+    pass.innerHTML =
+      '<div class="pass__top"><span class="pass__co">JMH Travel</span><span class="pass__kind">Boarding pass</span></div>' +
+      '<div class="pass__route"><div><span class="pass__k">From</span><b data-p="from"></b></div>' +
+      '<svg viewBox="0 0 48 24" aria-hidden="true"><rect x="4" y="5" width="34" height="12" rx="3" fill="currentColor"/><rect x="38" y="8" width="6" height="9" rx="2" fill="currentColor"/><circle cx="12" cy="19" r="3" fill="currentColor"/><circle cx="32" cy="19" r="3" fill="currentColor"/></svg>' +
+      '<div class="pass__to"><span class="pass__k">To</span><b data-p="to"></b></div></div>' +
+      '<dl class="pass__grid">' +
+      '<div><dt>Date</dt><dd data-p="date"></dd></div><div><dt>Pick-up</dt><dd data-p="time"></dd></div>' +
+      '<div><dt>Passengers</dt><dd data-p="pax"></dd></div><div><dt>Journey</dt><dd data-p="ret"></dd></div>' +
+      '<div class="pass__wide"><dt>Vehicle</dt><dd data-p="veh"></dd></div></dl>' +
+      '<div class="pass__tear" aria-hidden="true"></div>' +
+      '<div class="pass__foot"><div><span class="pass__k">Passenger</span><b data-p="name"></b><span class="pass__ref" data-p="ref"></span></div><div class="pass__bars" aria-hidden="true">' + bars + '</div></div>' +
+      '<p class="pass__fine">Quote request · demo only, nothing has been sent</p>';
+    var set = function (k, v) { pass.querySelector('[data-p="' + k + '"]').textContent = v; };
+    set('from', from); set('to', trip.id === 'airport' || trip.id === 'races' || trip.id === 'night' ? to : trip.title);
+    set('date', d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }));
+    set('time', f.time.value || 'To agree'); set('pax', pax); set('ret', f.ret.checked ? 'Return' : 'One way');
+    set('veh', tierFor(pax).name); set('name', f.name.value.trim()); set('ref', 'Ref ' + ref);
+    pass.hidden = false; pass.classList.remove('is-printed'); void pass.offsetWidth; pass.classList.add('is-printed');
+    if (window.matchMedia('(max-width: 859px)').matches) pass.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 
   renderRoute(); renderSize(); renderSummary();
 })();
